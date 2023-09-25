@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Homemade+Apple&family=Montserrat:wght@500;600&family=Poppins:wght@400;500;600;700&family=Roboto:wght@500&family=Ubuntu:wght@700&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: "Roboto";
+    color:rgb(233, 233, 233);
+    text-shadow: 3px 3px 5px black;
+    /* border: 1px red solid; */
+}
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #efefef;
+    background: url(./image/rock-paper-scissors.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 5vh;
+    font-size: 30px;
+}
+.game-container {
+    display: flex;
+    justify-content: center;
+    gap: 5vh;
+}
+/* .emoji-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 50px;
+}
+.emoji {
+    text-align: center;
+    font-size: 50px;
+} */
+
+.selection-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+.button-choice {
+    font-size: 50px;
+    border-radius: 10px;
+    border: 0px;
+    padding: 10px;
+    width: 300px;
+    background-color: #57d8ea;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: rgb(85, 85, 85) 3px 3px 10px;
+    
+}
+
+.button-choice:hover {
+    transform: scale(1.1);
+}
+
+.button-choice:active{
+    background-color: #a3a3a3;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 30px;
+    margin: 5vh 0 5vh 0;
+    background-color: rgba(85,85,85, 0.2);
+    padding: 10px;
+    /* width: 400px; */
+}
