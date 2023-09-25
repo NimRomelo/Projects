@@ -76,6 +76,7 @@ html, body {
     font-size: 30px;
     margin: 5vh 0 5vh 0;
     background-color: rgba(85,85,85, 0.2);
+    /* background-color: rgba(169, 17, 17, 0.687); */
     padding: 10px;
     /* width: 400px; */
 }

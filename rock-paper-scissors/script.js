@@ -23,6 +23,7 @@ function choiceClicked (event) {
     console.log(result)
     resultText.innerText = `Result: ${result}`
     playerText.innerText = `Player: ${player}`
+    changeResultBackground(result)
     
 }
 
@@ -59,4 +60,15 @@ function displayResult() {
         return(player == "Paper ✋") ? "You Lose!" : "You Win!";
     }
     
+}
+
+function changeResultBackground(result) {
+    let resultBackground = document.getElementById("result")
+    if (result === "You Win!") {
+        resultBackground.style.backgroundColor = "rgba(52, 180, 84, 0.687)";
+    } else if (result === "You Lose!") {
+        resultBackground.style.backgroundColor = "rgba(169, 17, 17, 0.687)";
+    } else {
+        resultBackground.style.backgroundColor = "rgba(85,85,85, 0.687)";
+    }
 }
