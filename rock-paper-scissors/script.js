@@ -6,10 +6,6 @@ const computerText = document.getElementsByClassName("computer-text")[0]
 let player;
 let computer;
 
-
-
-
-
 for (let i=0; i<buttonChoice.length; i++) {
     buttonChoice[i].addEventListener("click", choiceClicked)
 }
@@ -18,9 +14,8 @@ function choiceClicked (event) {
     player = event.target.textContent
     console.log(player)
     computerChoice()
-    displayResult()
     let result = displayResult()
-    console.log(result)
+    displayResult(result)
     resultText.innerText = `Result: ${result}`
     playerText.innerText = `Player: ${player}`
     changeResultBackground(result)

@@ -8,14 +8,19 @@
     /* border: 1px red solid; */
 }
 
-html, body {
+html {
     margin: 0px;
     padding: 0px;
     background-color: #efefef;
     background: url(./image/rock-paper-scissors.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
-    
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
@@ -76,7 +81,7 @@ html, body {
     font-size: 30px;
     margin: 5vh 0 5vh 0;
     background-color: rgba(85,85,85, 0.2);
-    /* background-color: rgba(169, 17, 17, 0.687); */
     padding: 10px;
-    /* width: 400px; */
+    border-radius: 20px;
+    max-width: 60%;
 }
