@@ -32,6 +32,7 @@ function addItem() {
             newItem.innerHTML = `${inputItem}
             <button class="remove-button">Delete</button>`
         listOfItems.appendChild(newItem)
+        newItem.classList.add("list-format")
         inputItemArea.value = "";
         }}
 }
@@ -59,6 +60,7 @@ function removeItem () {
 }
 
 addGlobalEventListener("click", ".clear-button", e=> {
+    alert("Delete all items?")
     removeAll();
 })
 

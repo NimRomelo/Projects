@@ -5,15 +5,35 @@ html {
     box-sizing: border-box;
     font-family: "Pixelify Sans","Serif";
     background-color: #FBFAF5;
+    margin: 0px;
     
 }
-
+body {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 *, *::before, *::after {
     box-sizing: inherit;
     /* border: 1px solid blue; */
 }
+.shop-title {
+    margin: 1rem 0 1rem 0;
+}
 .shop-title, .enter-item {
     text-align: center;
+}
+
+.gif-image {
+    width: 15rem;
+    margin-bottom: 1rem;
+    border-radius: 15px;
+}
+.list-container {
+    width: 80%;
+    max-width: 380px;
 }
 .list-of-items {
     width: 80%;
