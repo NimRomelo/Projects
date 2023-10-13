@@ -29,8 +29,8 @@ function addItem() {
         if(checkDuplicate (inputItem)) {
             alert("Item already added");
         } else {
-            newItem.innerHTML = `${inputItem}
-            <button class="remove-button">Delete</button>`
+            newItem.innerHTML = `<button class="remove-button">Delete</button>
+            <span class="item-name">${inputItem}</span>`
         listOfItems.appendChild(newItem)
         newItem.classList.add("list-format")
         inputItemArea.value = "";
