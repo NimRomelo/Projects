@@ -30,6 +30,9 @@ function addItem() {
             alert("Item already added");
         } else {
             newItem.innerHTML = `<button class="remove-button">Delete</button>
+            <button class="decrease">-</button>
+            <span class="item-quantity">1</span>
+            <button class="increase">+</button>
             <span class="item-name">${inputItem}</span>`
         listOfItems.appendChild(newItem)
         newItem.classList.add("list-format")
@@ -60,8 +63,9 @@ function removeItem () {
 }
 
 addGlobalEventListener("click", ".clear-button", e=> {
-    alert("Delete all items?")
+    if (window.confirm("Delete all items?")) {
     removeAll();
+    }
 })
 
 function removeAll () {
@@ -71,3 +75,19 @@ function removeAll () {
     }
 }
 
+addGlobalEventListener("click", ".increase, .decrease", e=> {
+    let targetParent = e.target.parentElement
+    let quantityElement = targetParent.querySelector(".item-quantity")
+    let quantityValue = parseInt(quantityElement.textContent)
+
+    if (e.target.classList.contains("increase")) {
+        quantityValue += 1
+    } else if (e.target.classList.contains("decrease") && quantityValue > 1) {
+        quantityValue -= 1
+    } else {
+        alert("Cannot be less than 1")
+    }
+
+    quantityElement.textContent = quantityValue
+    
+})
