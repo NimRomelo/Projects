@@ -59,8 +59,8 @@ body {
     padding: 0px;
 }
 .list-format {
-    margin-left: 4rem;
-    font-size: 1.7rem;
+    /* margin-left: 4rem; */
+    font-size: 1.6rem;
 }
 .input-button {
     border: 0;
