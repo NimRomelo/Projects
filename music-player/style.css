@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Poppins:wght@700&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: "Poppins"
+}
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url("images/girl-1990347_1920.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.audio-container {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.play-button {
+    font-size: 5rem;
+    background-color: transparent;
+    border: 0px;
+    margin-right: 2rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-button:hover {
+    color:rgb(255, 74, 198);
+}
+
+audio {
+    display: none;
+}
+
