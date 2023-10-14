@@ -33,7 +33,8 @@ function addItem() {
             <button class="decrease">-</button>
             <span class="item-quantity">1</span>
             <button class="increase">+</button>
-            <span class="item-name">${inputItem}</span>`
+            <span class="item-name">${inputItem}</span>
+            <input type="checkbox" class="added">`
         listOfItems.appendChild(newItem)
         newItem.classList.add("list-format")
         inputItemArea.value = "";
@@ -63,9 +64,14 @@ function removeItem () {
 }
 
 addGlobalEventListener("click", ".clear-button", e=> {
-    if (window.confirm("Delete all items?")) {
-    removeAll();
-    }
+    let checkItemsExist = document.getElementsByClassName("list-format")[0]
+    if (checkItemsExist) {
+        if (window.confirm("Delete all items?")) {
+            removeAll();
+            }
+    } return;
+    
+    
 })
 
 function removeAll () {
@@ -90,4 +96,16 @@ addGlobalEventListener("click", ".increase, .decrease", e=> {
 
     quantityElement.textContent = quantityValue
     
+})
+
+
+addGlobalEventListener("click", ".added", e=> {
+    let targetParent = e.target.parentElement
+    let itemText = targetParent.getElementsByClassName("item-name")[0]
+    
+    if (itemText.classList.contains("cross-out")) {
+        itemText.classList.remove("cross-out")
+    } else {
+    itemText.classList.add("cross-out")
+    }
 })

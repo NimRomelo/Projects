@@ -96,6 +96,14 @@ body {
 .remove-button:hover {
     background-color: rgba(0, 140, 94, 0.5);
 }
+.added {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+.cross-out {
+    text-decoration: line-through;
+}
 .clear-all {
     text-align: center;
 }
