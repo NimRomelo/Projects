@@ -2,12 +2,20 @@ const buttonChoice = document.getElementsByClassName("button-choice")
 const resultText = document.getElementsByClassName("result-text")[0]
 const playerText = document.getElementsByClassName("player-text")[0]
 const computerText = document.getElementsByClassName("computer-text")[0]
+const playerScore = document.getElementById("player-score")
+const computerScore = document.getElementById("computer-score")
+let resultBackground = document.getElementById("result")
 
 let player;
 let computer;
+let result;
 
 for (let i=0; i<buttonChoice.length; i++) {
     buttonChoice[i].addEventListener("click", choiceClicked)
+}
+
+function delayFunction(callback, delayTime) {
+    setTimeout(callback, delayTime);
 }
 
 function choiceClicked (event) {
@@ -15,18 +23,16 @@ function choiceClicked (event) {
     console.log(player)
     computerChoice()
     let result = displayResult()
-    displayResult(result)
     resultText.innerText = `Result: ${result}`
     playerText.innerText = `Player: ${player}`
-    changeResultBackground(result)
-    
+    updateScores(result)
+    delayFunction(checkWinner, 2000)
 }
 
 
 function computerChoice () {
     computer = Math.floor(Math.random()*buttonChoice.length)
-    // console.log(choice)
-
+    
     switch(computer) {
         case 0: 
             computer = "Rock ✊";
@@ -58,7 +64,7 @@ function displayResult() {
 }
 
 function changeResultBackground(result) {
-    let resultBackground = document.getElementById("result")
+
     if (result === "You Win!") {
         resultBackground.style.backgroundColor = "rgba(52, 180, 84, 0.687)";
     } else if (result === "You Lose!") {
@@ -67,3 +73,36 @@ function changeResultBackground(result) {
         resultBackground.style.backgroundColor = "rgba(85,85,85, 0.687)";
     }
 }
+
+
+function updateScores(result) {
+    let playerScoreValue = parseInt(playerScore.textContent)
+    let computerScoreValue = parseInt(computerScore.textContent)
+
+    if (result==="You Win!") {
+        playerScoreValue += 1
+        playerScore.textContent = playerScoreValue
+    } else if(result==="You Lose!"){
+        computerScoreValue += 1
+        computerScore.textContent = computerScoreValue
+    }
+}
+
+function checkWinner() {
+    if (playerScore.textContent === "5") {
+        alert("Player Wins! Game Restart")
+        restartGame()
+    } else if(computerScore.textContent === "5") {
+        alert("Computer Wins! Game Restart")
+        restartGame()
+    }
+}
+
+function restartGame() {
+    playerScore.textContent = "0"
+    computerScore.textContent = "0"
+    resultText.innerText = `Result: `
+    playerText.innerText = `Player: `
+    computerText.innerText = `Computer: `
+}
+

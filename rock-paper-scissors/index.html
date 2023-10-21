@@ -9,16 +9,20 @@
 </head>
 <body>
     <div class="title"> 
-        <h1 class="game-title">Let's Play: Rock Paper Scissors!</h1>
-        <p class="game-intro">Can you beat the computer?</p>
+        <h1 class="game-title">Let's Play:<br>Rock Paper Scissors!</h1>
+        <p class="game-intro">Can you beat the computer?<br>
+                                Best of 5 points!</p>
     </div>
     <div class="game-container">
-        <!-- <div class="emoji-container">
-            <span class="emoji">✊</span>
-            <span class="emoji">✋</span>
-            <span class="emoji">✌️</span>
-        </div> -->
-        <div class="selection-container">
+        <div class="selection-container-2">
+            <div class="player-score">
+                <span>Player: </span>
+                <span id="player-score">0</span>
+            </div>
+            <div class="computer-score">
+                <span>Computer: </span>
+                <span id="computer-score">0</span>
+            </div>
             <button class="button-choice" data-select="rock">Rock ✊</button>
             <button class="button-choice" data-select="paper">Paper ✋</button>
             <button class="button-choice" data-select="scissors">Scissors ✌️</button>
