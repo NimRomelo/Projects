@@ -4,6 +4,7 @@ const eraserButton = document.querySelector(".eraser");
 const gridSubmit = document.querySelector(".grid-submit")
 const gridNumber = document.querySelector(".grid-number")
 const clearButton = document.querySelector(".clear-button");
+const colorPicker = document.querySelector(".color-select")
 
 //event listeners
 sketchArea.addEventListener("click", changeColor);
@@ -34,7 +35,7 @@ function createSketchPad(sketchPadSize) {
 }
 function changeColor(event) {
     if ((isMouseDown || event.type === "click") && eraserClicked === false) {
-    event.target.style.backgroundColor = "black"
+    event.target.style.backgroundColor = `${colorPicker.value}`
     } else if((isMouseDown || event.type === "click") && eraserClicked === true) {
     event.target.style.backgroundColor ="white"
     }
