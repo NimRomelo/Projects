@@ -1,10 +1,12 @@
 //global variables
-const sketchArea = document.querySelector(".sketch-area-container")
+const sketchArea = document.querySelector(".sketch-area-container");
 const eraserButton = document.querySelector(".eraser");
-const gridSubmit = document.querySelector(".grid-submit")
-const gridNumber = document.querySelector(".grid-number")
+const gridSubmit = document.querySelector(".grid-submit");
+const gridNumber = document.querySelector(".grid-number");
 const clearButton = document.querySelector(".clear-button");
-const colorPicker = document.querySelector(".color-select")
+const colorPicker = document.querySelector(".color-select");
+const gridInput = document.querySelector(".grid-number");
+
 
 //event listeners
 sketchArea.addEventListener("click", changeColor);
@@ -14,6 +16,7 @@ sketchArea.addEventListener("mouseup", () => {isMouseDown = false;})
 gridSubmit.addEventListener("click", function() {changeGrid(); resetEraser()});
 clearButton.addEventListener("click", clearSketch);
 eraserButton.addEventListener("click", eraseSketch);
+gridInput.addEventListener("keydown", e=> {if (e.key === "Enter") {changeGrid();}})
 
 //initial variable values
 gridNumber.value = 15
@@ -21,6 +24,7 @@ let sketchPadSize = 15
 let isMouseDown = false
 let eraserClicked = false
 
+//initialize default sketchpad
 createSketchPad(sketchPadSize)
 
 function createSketchPad(sketchPadSize) {

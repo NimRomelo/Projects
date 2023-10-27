@@ -48,6 +48,7 @@ html, body {
 
 }
 
+
 .sketch-area-container {
     display: grid;
     grid-template-columns: repeat(600, 1fr);
@@ -95,4 +96,8 @@ html, body {
 
 .color-select:active, .clear-button:active, .grid-submit:active {
     background-color: aquamarine;
+}
+
+.eraser-active {
+    cursor: url("./images/icons8-eraser-tool-48.png")
 }
