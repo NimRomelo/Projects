@@ -1,7 +1,26 @@
+//global variables
 const sketchArea = document.querySelector(".sketch-area-container")
-const sketchPadSize = 10
+const eraserButton = document.querySelector(".eraser");
+const gridSubmit = document.querySelector(".grid-submit")
+const gridNumber = document.querySelector(".grid-number")
+const clearButton = document.querySelector(".clear-button");
+
+//event listeners
+sketchArea.addEventListener("click", changeColor);
+sketchArea.addEventListener("mouseover", changeColor);
+sketchArea.addEventListener("mousedown", () => {isMouseDown = true;})
+sketchArea.addEventListener("mouseup", () => {isMouseDown = false;})
+gridSubmit.addEventListener("click", function() {changeGrid(); resetEraser()});
+clearButton.addEventListener("click", clearSketch);
+eraserButton.addEventListener("click", eraseSketch);
+
+//initial variable values
+gridNumber.value = 15
+let sketchPadSize = 15
 let isMouseDown = false
-let eraserCliked = false
+let eraserClicked = false
+
+createSketchPad(sketchPadSize)
 
 function createSketchPad(sketchPadSize) {
     sketchArea.style.gridTemplateColumns = `repeat(${sketchPadSize}, 1fr)`
@@ -14,45 +33,53 @@ function createSketchPad(sketchPadSize) {
     }
 }
 function changeColor(event) {
-    if ((isMouseDown || event.type === "click") && eraserCliked === false) {
+    if ((isMouseDown || event.type === "click") && eraserClicked === false) {
     event.target.style.backgroundColor = "black"
-    } else if((isMouseDown || event.type === "click") && eraserCliked === true) {
+    } else if((isMouseDown || event.type === "click") && eraserClicked === true) {
     event.target.style.backgroundColor ="white"
     }
 }
-
+function changeGrid() {
+        const sketchGrid = document.querySelector(".sketch-area-container")
+        sketchGrid.innerHTML = "";
+        sketchPadSize = Math.abs(gridNumber.value)
+        if (gridNumber.value <= 100) {
+        gridNumber.value = sketchPadSize
+        createSketchPad(sketchPadSize)
+        updateGridLabel()
+        resetEraser()
+        } else {
+            alert("Grid cannot be more than 100x100")
+        }
+}
 function clearSketch() {
-    const clearButton = document.querySelector(".clear-button");
     const gridCell = document.querySelectorAll(".grid-cell")
-    clearButton.addEventListener("click", e=> {
         for(let i=0; i<gridCell.length; i++) {
             gridCell[i].style.backgroundColor = "white";
         }
-    })
 }
 
 function eraseSketch() {
-    const eraserButton = document.querySelector(".eraser");
-    eraserButton.addEventListener("click", e=>{
-        if(eraserCliked === false) {
-        eraserCliked = true
-        eraserButton.style.backgroundColor = "grey"
+        if(eraserClicked === false) {
+        eraserClicked = true
+        eraserButton.style.backgroundColor = "rgb(11, 136, 109)"
+        eraserButton.style.color = "white"
         } else {
-        eraserCliked = false
+        eraserClicked = false
         eraserButton.style.backgroundColor = "white"
+        eraserButton.style.color = "black"
         }
-    })
-
+    }
+function resetEraser() {
+    if (eraserClicked === true) {
+        eraserClicked = false;
+        eraserButton.style.backgroundColor = "white"
+        eraserButton.style.color = "black"
+        console.log(eraserClicked)
+    }
 }
-createSketchPad(sketchPadSize);
-    sketchArea.addEventListener("click", changeColor);
-    sketchArea.addEventListener("mouseover", changeColor);
-    sketchArea.addEventListener("mousedown", event => {
-        isMouseDown = true;
-    })
-    sketchArea.addEventListener("mouseup", event => {
-        isMouseDown = false;
-})
 
-clearSketch()
-eraseSketch()
+function updateGridLabel() {
+    const label = document.querySelector(".grid-label")
+    label.textContent = `${sketchPadSize}x${sketchPadSize}`
+}
