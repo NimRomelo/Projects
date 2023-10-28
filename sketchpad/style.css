@@ -86,7 +86,7 @@ html, body {
 .grid-submit {
     margin-right: 20px;
 }
-.color-select, .clear-button, .eraser, .grid-number, .grid-submit{
+.color-select, .clear-button, .eraser, .grid-number, .grid-submit, .undo-button{
     background-color: white;
     border-radius: 5px;
     border: solid 1px white;
@@ -94,7 +94,7 @@ html, body {
     cursor: pointer;
 }
 
-.color-select:active, .clear-button:active, .grid-submit:active {
+.color-select:active, .clear-button:active, .grid-submit:active, .undo-button:active {
     background-color: aquamarine;
 }
 

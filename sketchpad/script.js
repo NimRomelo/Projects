@@ -6,23 +6,27 @@ const gridNumber = document.querySelector(".grid-number");
 const clearButton = document.querySelector(".clear-button");
 const colorPicker = document.querySelector(".color-select");
 const gridInput = document.querySelector(".grid-number");
-
+const undoButton = document.querySelector(".undo-button");
+const gridHistory = [];
 
 //event listeners
 sketchArea.addEventListener("click", changeColor);
 sketchArea.addEventListener("mouseover", changeColor);
 sketchArea.addEventListener("mousedown", () => {isMouseDown = true;})
 sketchArea.addEventListener("mouseup", () => {isMouseDown = false;})
-gridSubmit.addEventListener("click", function() {changeGrid(); resetEraser()});
+gridSubmit.addEventListener("click", function() {changeGrid(); resetEraser();});
 clearButton.addEventListener("click", clearSketch);
 eraserButton.addEventListener("click", eraseSketch);
+undoButton.addEventListener("click", undoChanges);
 gridInput.addEventListener("keydown", e=> {if (e.key === "Enter") {changeGrid();}})
 
+
 //initial variable values
-gridNumber.value = 15
-let sketchPadSize = 15
-let isMouseDown = false
-let eraserClicked = false
+gridNumber.value = 15;
+let sketchPadSize = 15;
+let isMouseDown = false;
+let eraserClicked = false;
+let currentGridIndex = -1;
 
 //initialize default sketchpad
 createSketchPad(sketchPadSize)
@@ -39,10 +43,45 @@ function createSketchPad(sketchPadSize) {
 }
 function changeColor(event) {
     if ((isMouseDown || event.type === "click") && eraserClicked === false) {
-    event.target.style.backgroundColor = `${colorPicker.value}`
+        event.target.style.backgroundColor = `${colorPicker.value}`;
+        storeGridHistory();
+
     } else if((isMouseDown || event.type === "click") && eraserClicked === true) {
-    event.target.style.backgroundColor ="white"
+        event.target.style.backgroundColor ="white"
     }
+}
+
+function storeGridHistory() {
+    if(isMouseDown === false) {
+    gridHistory.push(Array.from(sketchArea.children).map((grid)=>grid.style.backgroundColor));
+    currentGridIndex++;
+    console.log(currentGridIndex)
+    }
+}
+
+function undoChanges() {
+    if(currentGridIndex > 0)  {
+        currentGridIndex--;
+        console.log(currentGridIndex)
+        const previousGridState = gridHistory[currentGridIndex];
+        const gridCells = sketchArea.children
+
+    for(let i=0; i<gridCells.length; i++) {
+        gridCells[i].style.backgroundColor = previousGridState[i]
+    }
+    } else {
+        clearSketch();
+    }
+}
+
+function clearSketch() {
+    const gridCell = document.querySelectorAll(".grid-cell")
+        for(let i=0; i<gridCell.length; i++) {
+            gridCell[i].style.backgroundColor = "white";
+        }
+    gridHistory.length = 0;
+    currentGridIndex = -1
+    resetEraser()
 }
 function changeGrid() {
         const sketchGrid = document.querySelector(".sketch-area-container")
@@ -55,12 +94,6 @@ function changeGrid() {
         resetEraser()
         } else {
             alert("Grid cannot be more than 100x100")
-        }
-}
-function clearSketch() {
-    const gridCell = document.querySelectorAll(".grid-cell")
-        for(let i=0; i<gridCell.length; i++) {
-            gridCell[i].style.backgroundColor = "white";
         }
 }
 
