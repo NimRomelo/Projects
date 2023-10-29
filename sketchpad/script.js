@@ -7,6 +7,7 @@ const clearButton = document.querySelector(".clear-button");
 const colorPicker = document.querySelector(".color-select");
 const gridInput = document.querySelector(".grid-number");
 const undoButton = document.querySelector(".undo-button");
+const redoButton = document.querySelector(".redo");
 const gridHistory = [];
 
 //event listeners
@@ -18,6 +19,7 @@ gridSubmit.addEventListener("click", function() {changeGrid(); resetEraser();});
 clearButton.addEventListener("click", clearSketch);
 eraserButton.addEventListener("click", eraseSketch);
 undoButton.addEventListener("click", undoChanges);
+redoButton.addEventListener("click", redoChanges);
 gridInput.addEventListener("keydown", e=> {if (e.key === "Enter") {changeGrid();}})
 
 
@@ -55,7 +57,7 @@ function storeGridHistory() {
     if(isMouseDown === false) {
     gridHistory.push(Array.from(sketchArea.children).map((grid)=>grid.style.backgroundColor));
     currentGridIndex++;
-    console.log(currentGridIndex)
+    console.log(currentGridIndex);
     }
 }
 
@@ -74,13 +76,31 @@ function undoChanges() {
     }
 }
 
+function redoChanges() {
+    console.log(gridHistory.length)
+    if(currentGridIndex >= 0 && currentGridIndex<gridHistory.length-1) {
+        currentGridIndex++;
+        console.log(currentGridIndex)
+        const previousGridState = gridHistory[currentGridIndex];
+
+        if(previousGridState) {
+            const gridCells = sketchArea.children
+
+            for(let i=0; i<gridCells.length; i++) {
+            gridCells[i].style.backgroundColor = previousGridState[i]
+            }
+    }
+    }
+}
+
+
 function clearSketch() {
     const gridCell = document.querySelectorAll(".grid-cell")
         for(let i=0; i<gridCell.length; i++) {
             gridCell[i].style.backgroundColor = "white";
         }
     gridHistory.length = 0;
-    currentGridIndex = -1
+    currentGridIndex = -1;
     resetEraser()
 }
 function changeGrid() {

@@ -86,7 +86,8 @@ html, body {
 .grid-submit {
     margin-right: 20px;
 }
-.color-select, .clear-button, .eraser, .grid-number, .grid-submit, .undo-button{
+.color-select, .clear-button, .eraser, .grid-number,
+ .grid-submit, .undo-button, .redo{
     background-color: white;
     border-radius: 5px;
     border: solid 1px white;
@@ -94,10 +95,17 @@ html, body {
     cursor: pointer;
 }
 
-.color-select:active, .clear-button:active, .grid-submit:active, .undo-button:active {
+.color-select:active, .clear-button:active, .grid-submit:active,
+ .undo-button:active, .redo:active {
     background-color: aquamarine;
 }
 
 .eraser-active {
     cursor: url("./images/icons8-eraser-tool-48.png")
+}
+
+.footer {
+    text-align: center;
+    color: white;
+    margin-top: 4rem;
 }
