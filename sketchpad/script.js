@@ -24,8 +24,8 @@ gridInput.addEventListener("keydown", e=> {if (e.key === "Enter") {changeGrid();
 
 
 //initial variable values
-gridNumber.value = 15;
-let sketchPadSize = 15;
+gridNumber.value = 50;
+let sketchPadSize = 50;
 let isMouseDown = false;
 let eraserClicked = false;
 let currentGridIndex = -1;

@@ -109,3 +109,10 @@ html, body {
     color: white;
     margin-top: 4rem;
 }
+.git-link {
+    text-decoration: none;
+    color: rgb(19, 199, 160);
+}
+.git-link:hover {
+    color:aquamarine;
+}
