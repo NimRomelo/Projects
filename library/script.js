@@ -172,9 +172,10 @@ function saveToLocalStorage(book) {
 function loadBooksFromLocalStorage() {
     const existingBooks = JSON.parse(localStorage.getItem('books'));
 
+    if(existingBooks){
     existingBooks.forEach(book => {
         createNewBook(book.title, book.author, book.pages, book.date, book.image, book.readStatus);
-    })
+    })}
 }
 
 loadBooksFromLocalStorage();
@@ -183,12 +184,14 @@ showLibraryIsEmpty();
 function isDuplicate(title) {
     const existingBooks = JSON.parse(localStorage.getItem('books'));
 
-    if(existingBooks.some(existingBook => existingBook.title ===
-        title)) {
-        alert("Book is already in your library.")
-        return true;
+    if(existingBooks){
+        if(existingBooks.some(existingBook => existingBook.title ===
+            title)) {
+            alert("Book is already in your library.")
+            return true;
+            }
         }
-    
+        
 }
 
 const deleteBtn = document.querySelector('.delete-btn');
