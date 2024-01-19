@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="header">
+        <div class="my-library">
+            <span class="header-title">
+                My Personal Library
+            </span>
+        </div>
+        <div class="quote-container">
+            <p class="quote-content">
+                "A reader lives a thousand<br>before he dies."
+            </p>
+            <p class="quote-author">
+                -George R.R. Martin
+            </p>
+        </div>
+
+        <div class="library-log">
+            <div class="book-counter">
+                <span class="books-read">
+                    Books Read: 
+                </span>
+                <span class="book-count-read">
+                    0
+                </span>
+            </div>
+            <div class="book-to-read-counter">
+                <span class="books-to-read">
+                    To Read: 
+                </span>
+                <span class="book-count-to-read">
+                    0
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <section class="add-a-book">
+        <button class="add-book-btn">Add a book</button>
+        <span class="library-status">Your library is currently empty.</span>
+
+        <!-- Dialog Section -->
+        <dialog class="add-book-dialog" id="myDialog">
+            <form class="dialog-form">
+                <div class="input-container">
+                    <label for="book-title">Book Title</label>
+                        <input 
+                            type="text"
+                            name="book-title" 
+                            id="book-title" 
+                            class="title-input input-area"
+                            required 
+                        >
+                </div>
+                <div class="input-container">
+                    <label for="book-author">Author</label>
+                    <input 
+                        type="text"
+                        name="book-author" 
+                        id="book-author" 
+                        class="author-input input-area"
+                        required 
+                    >
+                </div>
+                <div class="input-container">
+                    <label for="book-pages">No. of pages</label>
+                    <input 
+                        type="number"
+                        name="book-pages" 
+                        id="book-pages" 
+                        class="pages-input input-area"
+                        required 
+                    >
+                </div>
+                <div class="input-container">
+                    <label for="date-added">Date</label>
+                    <input 
+                        type="date"
+                        name="date-added" 
+                        id="date-added" 
+                        class="date-input input-area"
+                        required 
+                    >
+                </div>
+                <div class="input-container">
+                    <label for="image-file">Image URL</label>
+                    <input 
+                        type="text"
+                        name="image-file" 
+                        id="image-file" 
+                        class="image-input input-area"
+                    >
+                </div>
+                <div class="input-container">
+                    <span class="read-question">Have you read this?</span>
+                    <label for="read-yes">Yes</label>
+                    <input 
+                        type="radio"
+                        name="read-status" 
+                        id="read-yes" 
+                        class="checkbox input-area"
+                        checked
+                    >
+                    <label for="read-no">No</label>
+                    <input 
+                        type="radio"
+                        name="read-status" 
+                        id="read-no" 
+                        class="checkbox input-area"
+                    >
+                </div>
+                <div class="modal-btn">
+                    <button class="clear-btn" formmethod="dialog">
+                        Clear
+                    </button>
+                    <button class="submit-btn" type="submit">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </dialog>
+        <!-- Dialog section end -->
+    
+    </section>
+
+    <section class="book-library">
+        <!-- <div class="book-container">
+            <div class="book-image">
+                <img class="image" src="
+                https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1463592438i/30228538.jpg" >
+            </div>
+            <div class="delete-btn">
+                <img src="./images/delete.png" alt="" class="delete">
+            </div>
+            <div class="read-btn">
+                <div class="slider"></div>
+                <button class="read" onclick="toggleRead()">Read</button>
+                <button class="not-read" onclick="toggleNotRead()">To Read</button>
+            </div>
+            <div class="book-info">
+                <span class="book-title" title="How to Kill a Mockingbird">
+                    Test Book</span>
+                <span class="book-author">Paolo Coelho</span>
+                <span class="pages">208 pages</span>
+                <span class="date-read">Date added: April 5, 2018</span>
+            </div>
+        </div> -->
+    </section>
+    
+</body>
+<script src="script.js"></script>
+</html>
+
+
+<!-- Functionalities to add
+1. Be able to upload pictures of the book (done)
+2. Able to store newly added books (done)
+3. Able to delete books in library (done)
+4. Able to mark as read or unread and update book logs/counter
+5. Integrate back-end using Firebase or MongoDB-->
