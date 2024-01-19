@@ -157,7 +157,7 @@ function createNewBook(title, author, pages, date, image, readStatus) {
 
 
 function saveToLocalStorage(book) {
-    const existingBooks = JSON.parse(localStorage.getItem('books'));
+    const existingBooks = JSON.parse(localStorage.getItem('books')) ?? [];
 
     if(!existingBooks.some(existingBook => existingBook.title ===
         book.title)) {
@@ -170,7 +170,7 @@ function saveToLocalStorage(book) {
 }
 
 function loadBooksFromLocalStorage() {
-    const existingBooks = JSON.parse(localStorage.getItem('books'));
+    const existingBooks = JSON.parse(localStorage.getItem('books')) ?? [];
 
     if(existingBooks){
     existingBooks.forEach(book => {
@@ -182,7 +182,7 @@ loadBooksFromLocalStorage();
 showLibraryIsEmpty();
 
 function isDuplicate(title) {
-    const existingBooks = JSON.parse(localStorage.getItem('books'));
+    const existingBooks = JSON.parse(localStorage.getItem('books')) ?? [];
 
     if(existingBooks){
         if(existingBooks.some(existingBook => existingBook.title ===
@@ -209,7 +209,7 @@ function deleteBook(e) {
 function removeFromStorage(e) {
     const targetParent = e.target.parentElement.parentElement;
     const title = targetParent.querySelector('.book-title').innerText;
-    const existingBooks = JSON.parse(localStorage.getItem('books'));
+    const existingBooks = JSON.parse(localStorage.getItem('books')) ?? [];
     const indexToRemove = existingBooks.findIndex(book => book.title === title);
 
     if(indexToRemove !== -1) {
@@ -244,7 +244,7 @@ function updateBookCounter() {
 
 function showLibraryIsEmpty() {
     const status = document.querySelector('.library-status');
-    const existingBooks = JSON.parse(localStorage.getItem('books'));
+    const existingBooks = JSON.parse(localStorage.getItem('books')) ?? [];
 
     if (existingBooks.length === 0) {
         status.style.display = 'inline';
@@ -275,7 +275,7 @@ function toggleNotRead(slider, readBtn, notReadBtn) {
 }
 
 function changeReadStatus(e) {
-    const existingBooks = JSON.parse(localStorage.getItem('books'));
+    const existingBooks = JSON.parse(localStorage.getItem('books')) ?? [];
     const targetParent = e.target.parentElement.parentElement
     const bookTitle = targetParent.querySelector('.book-title').textContent;
 
