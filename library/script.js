@@ -138,12 +138,12 @@ function createNewBook(title, author, pages, date, image, readStatus) {
     saveToLocalStorage(newBook);
 
     readBtn.addEventListener('click', (e) => {
-        changeReadStatus(e);
-        toggleRead(readSlider, readBtn, notReadBtn);
+            changeReadStatus(e);
+            toggleRead(readSlider, readBtn, notReadBtn);
     });
     notReadBtn.addEventListener('click', (e) => {
-        changeReadStatus(e);
-        toggleNotRead(readSlider, readBtn, notReadBtn)
+            changeReadStatus(e);
+            toggleNotRead(readSlider, readBtn, notReadBtn);
     });
     
     deleteBtn.addEventListener('click', function(e) {
@@ -280,15 +280,21 @@ function changeReadStatus(e) {
     const bookTitle = targetParent.querySelector('.book-title').textContent;
 
     const bookIndex = existingBooks.findIndex(book => book.title === bookTitle);
+    
+    
 
     if(bookIndex !== -1) {
 
-        existingBooks[bookIndex].readStatus = !existingBooks[bookIndex].readStatus;
+        if(e.target.textContent === 'Read' && existingBooks[bookIndex].readStatus === true){
+            return;
+        } else if (e.target.textContent === 'To Read' && existingBooks[bookIndex].readStatus === false){
+            return;
+        } else {
+            existingBooks[bookIndex].readStatus = !existingBooks[bookIndex].readStatus;
 
-        localStorage.setItem('books', JSON.stringify(existingBooks));
+            localStorage.setItem('books', JSON.stringify(existingBooks));
+        }
     }
-
     console.log('status changed');
     console.log(existingBooks);
-
 }
