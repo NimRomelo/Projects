@@ -148,7 +148,6 @@ function createNewBook(title, author, pages, date, image, readStatus) {
     
     deleteBtn.addEventListener('click', function(e) {
         deleteBook(e);
-        removeFromStorage(e);
     })
 
     updateBookCounter();
@@ -203,6 +202,7 @@ function deleteBook(e) {
     
     if (isConfirmed) {
         targetParent.remove();
+        removeFromStorage(e);
     }
 }
 
