@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-cont">
+            <h1 class="header">Harmonization <span>Search Tool</span></h1>
+            <div class="quick-links-cont">
+                <div class="quick-links">
+                    <a href="https://storage2.patentsight.com/master/harmonizer-webapi/" target="_blank">
+                        Harmonizer
+                    </a>
+                </div>
+                <div class="quick-links">
+                    <a href="https://gpss3.tipo.gov.tw/gpsskmc/gpssbkm?@@0.6206652056798594" target="_blank">
+                        TW Patent Search
+                    </a>
+                </div>
+                <div class="quick-links">
+                    <a href="https://go.patentsight.com/?welcome=1" target="_blank">
+                        PatentSight BI
+                    </a>
+    
+                    <a href="https://advance.lexis.com/bisnexishome/?pdmfid=1519360&crid=7822c531-1e3a-4846-8298-b5d561f7b2a5&ecomp=qb5hk&prid=1e8cc830-2dbb-43b0-b4bf-4dd165b8ca05" target="_blank">
+                        Nexis+ D&B Structure
+                    </a>
+                    <a href="https://www.totalpatentone.com/search?lna2=MjU1MzNiMzAzZmVmYTI4YzkyYzQ2YTg5ZDQxZjMzOWU5NGE3NGRhNmNkNDExNDc5NWQ2MTE0ZGE1NWQ3NzBhODY1YzAxNTM4dXJuOnVzZXI6UEExOTM0MDQ4MTghMTU0MTUwMCwxNTI4MDE2LDE1MzA2NzEsMTAwMDIwMiwxNTE4NDkyLDE1MTI5NjksMTUyMjg1NSwxMDAxMDkxLDEwMDAyMDcsMTAwMDIwMCwxNTE2ODIzLDE1MTg0MjUsMTUyODA3NCwxNTI0ODg4LDEwMDA1ODYsMTUyNTc3NiwxNTQyODk5LDE1MzkxMDksMTAwMDIxMywxNTQ1ODc0LCFub25l&aci=rt&cbc=0&lnsi=73a2285d-1d1b-4880-9708-83839b6c13f9&rmflag=0&sit=null" target="_blank">
+                        TotalPatentOne
+                    </a>
+    
+                </div>
+                <div class="quick-links">
+                    <a href="https://dev.azure.com/LNIP/LNIP/_boards/board/t/Harmonization/Stories" target="_blank">
+                        Azure
+                    </a>
+                    <a href="https://reedelsevier.sharepoint.com/sites/OG-LNGHarmoteam/Shared%20Documents/Forms/AllItems.aspx" target="_blank">
+                        Sharepoint
+                    </a>
+                    <a href="https://login.microsoftonline.com/9274ee3f-9425-4109-a27f-9fb15c10675d/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=2C5D0A8A41A810D4C54F411C14F99EAFC7CCA1DD835A9F1C%2DFFFAA66F529F9204EE43276C63DF105DEB023C7A952F6E0F4E136FE3B7624491&redirect%5Furi=https%3A%2F%2Freedelsevier%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=558b08a1%2D2090%2D4000%2Db70c%2Db9c248253dc9" target="_blank">
+                        Time Table 2024
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="tool-container">
+
+
+        <div class="input-container">
+            <div class="query-cont">
+                <div class="specify-container row-container">
+                    <label for="quotation-marks">Exact Match</label>
+                    <input type="checkbox" class="quotation-marks" id="quotation-marks">
+                </div>
+                <div class="company-search row-container">
+                    <input class="input-style" type="text" id="company-name" placeholder="Enter Company Name" required>
+                    <button id="company-name">Search Company Name</button>
+                </div>
+                <div class="address-search row-container">
+                    <input type="text" class="address input-style" placeholder="Enter Company City/State/Country">
+                    <button id="address">Search with Address</button>
+                </div>
+                <div class="finance row-container">
+                    <input type="text" class="isin-number input-style" placeholder="Enter ISIN Number">
+                    <div class="finance-button-cont">
+                        <button id="stock">Stock Listed?</button>
+                        <button id="isin">ISIN</button>
+                        <button id="openfigi">OpenFigi</button>
+                    </div>
+                        
+                </div>
+                <div class="other-company-search row-container">
+                    <input type="text" class="address input-style" placeholder="Enter Other Company Name">
+                    <button id="other-company">Search for Relationship</button>
+                </div>
+            </div>
+
+            <div class="query-cont">
+                <div class="ultimate-owner row-container">
+                    <input class="input-style" type="text" id="company" value='("parent company" OR owner OR shareholder OR control OR majority)' required>
+                    <button id="ultimate-owner">Search for Ultimate Owner</button>
+                </div>
+                <div class="name-change row-container">
+                    <input class="input-style" type="text" id="company" value='("previous name" OR "former name" OR former* OR "new name" OR "name change" OR "aka" OR "dba" OR "doing business as" OR "also known as" OR "fka" OR "formerly known as")
+                    ' required>
+                    <button id="name-change">Search for Name Changes</button>
+                </div>
+                <div class="subsidiaries row-container">
+                    <input class="input-style" type="text" id="company" value='(subsidiary OR member OR affiliate)' required>
+                    <button id="subsidiaries">Search for Subsidiaries</button>
+                </div>
+                <div class="acquisitions row-container">
+                    <input class="input-style" type="text" id="company" value='(acquired OR merger OR "joint-venture" OR JV OR integrate)' required>
+                    <button id="acquisitions">Search for Acquistions</button>
+                </div>
+                <div class="divestments row-container">
+                    <input class="input-style" type="text" id="company" value='(divest OR sold OR spin-off)' required>
+                    <button id="acquisitions">Search for Divestments</button>
+                </div>
+
+            </div>
+            
+            <div class="query-cont">
+                <div class="custom-row row-container">
+                    <input class="input-style" type="text" id="company" placeholder="Enter Custom Query">
+                    <button id="custom">Search Query</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="notes-container">
+            <div class="text-area-cont"><textarea class="notes" placeholder="Place your notes here"></textarea>
+                <button class="textarea-notes-btn">Copy Note 1</button>
+            </div>
+            <div class="text-area-cont"><textarea class="notes" placeholder="Place your notes here"></textarea>
+                <button class="textarea-notes-btn">Copy Note 2</button>
+            </div>
+            <div class="text-area-cont"><textarea class="notes" placeholder="Place your notes here"></textarea>
+                <button class="textarea-notes-btn">Copy Note 3</button>
+            </div>
+            <div class="text-area-cont"><textarea class="notes" placeholder="Place your notes here"></textarea>
+                <button class="textarea-notes-btn">Copy Note 4</button>
+            </div>
+            <div class="text-area-cont"><textarea class="notes" placeholder="Place your notes here"></textarea>
+                <button class="textarea-notes-btn">Copy Note 5</button>
+            </div>
+            <div class="links-container">
+                <textarea class="links" placeholder="Paste links here"></textarea>
+                <button class="textarea-links-btn">Copy Link 1</button>
+            </div>
+            <div class="links-container">
+                <textarea class="links" placeholder="Paste links here"></textarea>
+                <button class="textarea-links-btn">Copy Link 2</button>
+            </div>
+            <div class="links-container">
+                <textarea class="links" placeholder="Paste links here"></textarea>
+                <button class="textarea-links-btn">Copy Link 3</button>
+            </div>
+            <div class="links-container">
+                <textarea class="links" placeholder="Paste links here"></textarea>
+                <button class="textarea-links-btn">Copy Link 4</button>
+            </div>
+            <div class="links-container">
+                <textarea class="links" placeholder="Paste links here"></textarea>
+                <button class="textarea-links-btn">Copy Link 5</button>
+            </div>
+            <button class="textarea-clear-btn">Clear All</button>
+    </div>
+
+    
+    <div class="footer">
+        <h3 class="footer-name">Copyright 2024 <a href="https://nimromelo.github.io/Portfolio/#home"
+            target="_blank">NR Designs</a></h3>
+    </div>
+
+</body>
+
+
+<script src="script.js"></script>
+
+
+</html>
+
+
+<!-- 
+1. Add divestments, stock listed, ISIN, OpenFigi, company relationship search -- done
+1.1 Add option to include "" to search for exact match --done
+2. Add notes area (left: company list; right: detailed research notes -- done) 
+3. Save changes to localStorage
+4. Add elimination feature for acquisition news
+5. Add header and footer
+
+
+
+
+ -->
