@@ -7,6 +7,9 @@
     --cream: #EFECEC;
     --light-green: #96E9C6;
     --roboto: "Roboto";
+    --light-orange: #F3B95F;
+    --purple: #5D3587;
+    --light-blue: #7BD3EA;
 }
 
 * {
@@ -26,6 +29,7 @@ html, body {
 
 .nav-bar {
     background-color: var(--navy-blue);
+    /* height: 10vh; */
 }
 
 .nav-cont {
@@ -61,6 +65,7 @@ html, body {
     margin-right: 20px;
     width: 100%;
     justify-content: flex-end;
+    /* background-color: var(--purple); */
 
 }
 
@@ -73,28 +78,33 @@ html, body {
 
 .quick-links-cont a{
     color: var(--cream);
-    font-size: 0.7rem;
-    font-weight: 300;
+    font-size: 0.75rem;
+    font-weight: 500;
     text-decoration: none;
+    display: block;
+    transition: all 0.1s ease;
 }
 
 .quick-links-cont a:hover{
     color: var(--orange);
+
 }
 
 .tool-container {
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
     padding: 0px 5% 0px 5%;
     align-items: flex-start;
     justify-content: flex-start;
     height: 100%;
-
+    /* border: 1px solid blue; */
 }
 
 .input-container {
     width: 100%;
-    height: 100%;
+    /* border: 1px solid red; */
 
 }
 
@@ -107,7 +117,17 @@ html, body {
     justify-content: space-around;
     gap: 0.5rem;
     text-align: center;
-    padding: 10px 10px 10px 0px;
+    padding: 10px 10px 0px 0px;
+}
+
+.query-cont .fa-clipboard {
+    margin-left: -23px;
+    transition: all 0.1s ease;
+}
+
+.query-cont .fa-clipboard:hover {
+    cursor: pointer;
+    color: var(--orange)
 }
 
 .row-container {
@@ -116,8 +136,27 @@ html, body {
     align-items: center;
 }
 
-.specify-container {
+.check-cont {
     font-size: 0.8rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+}
+
+.specify-container .input-clear-btn, #clear-notes {
+    align-self: flex-end;
+    width: 85px;
+    height: 2rem;
+    font-size: 0.7rem;
+    background-color: rgb(238, 97, 97);
+    color: var(--cream)
+}
+
+
+.specify-container .input-clear-btn:hover, #clear-notes:hover {
+    background-color: var(--pink);
+    color: var(--navy-blue);
 }
 
 .input-style {
@@ -145,6 +184,25 @@ html, body {
     transition: all 0.1s ease;
 }
 
+#other-company, #custom {
+    background-color: var(--purple);
+    color: var(--cream);
+}
+#openfigi {
+    background-color: var(--light-blue);
+}
+
+#openfigi:hover {
+    background-color: var(--light-orange);
+    color: var(--navy-blue);
+}
+
+#other-company:hover, #custom:hover {
+    background-color: var(--light-blue);
+    color: var(--navy-blue);
+}
+
+
 .finance-button-cont {
     display: flex;
     width: 250px;
@@ -160,10 +218,19 @@ html, body {
 }
 
 
+
+
 .input-container button:hover {
     background-color: var(--orange);
     color: var(--cream);
 }
+
+.query-cont.input {
+    height: 100px;
+    width: 100%;
+}
+
+
 
 .notes-container {
     width: 100%;
@@ -171,8 +238,10 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items:flex-start;
+    justify-content: center;
     gap: 5px;
-    margin-top: 2rem;
+    /* border: 1px solid red; */
+    margin-top: 0.4rem;
 }
 
 .text-area-cont {
@@ -185,6 +254,13 @@ html, body {
 .notes {
     width: 100%;
     height: 4rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.notes::placeholder, .links::placeholder{
+    font-weight: 300;
+    font-size: 0.7rem;
 }
 
 .links-container {
@@ -194,11 +270,16 @@ html, body {
     gap: 5px;
 }
 
-.links {
+.links, .more-notes {
     width: 100%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px grey;
 }
 
-
+.more-notes {
+    height: 8rem;
+}
 
 
 .notes-container button {
@@ -207,27 +288,37 @@ html, body {
     text-align: center;
     cursor: pointer;
     width: 100px;
-    background-color: var(--orange);
+    background-color: var(--light-blue);
     border-radius: 5px;
     border: 0px;
     box-shadow: 1px 1px 2px grey;
     transition: all 0.1s ease;
-    color: var(--cream);
+    color: var(--navy-blue);
         /* margin-left: calc(100% - 100px); */
 }
 
-
-
 .notes-container button:hover {
-    background-color: var(--light-green);
+    background-color: var(--purple);
+    color: var(--cream);
+}
+
+.notes-container .input-clear-btn {
+    align-self: flex-end;
+    width: 90px;
+    height: 2rem;
+    /* margin-top: 10px; */
+    background-color: rgb(238, 97, 97);
+    color: var(--cream)
+}
+
+
+.notes-container .input-clear-btn:hover {
+    background-color: var(--pink);
     color: var(--navy-blue);
 }
 
-.notes-container .textarea-clear-btn {
-    align-self: center;
-    width: 200px;
-    background-color: var(--pink);
-}
+
+
 
 .footer {
     position: fixed;
@@ -237,15 +328,26 @@ html, body {
     background-color: var(--navy-blue);
     text-align: center;
     bottom: 0px;
+    height: 25px;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .footer-name {
     color: var(--cream);
-    font-weight: 100;
+    font-weight: 300;
     font-size: 0.8rem;
 }
 
 .footer-name a {
     color: var(--orange);
     text-decoration: none;
+}
+
+.other-info {
+    color: var(--cream);
+    font-size: 0.8rem;
+    font-weight: 300;
 }
