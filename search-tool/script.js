@@ -248,6 +248,8 @@ pasteButtons.forEach( (button)=>{
             setTimeout(()=>{
                 targetBtn.innerHTML = `<i class="fa-solid fa-paste">`;
             }, 500);
+
+        saveNoteValues();
     
     })
 })
