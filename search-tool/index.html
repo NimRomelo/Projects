@@ -13,6 +13,7 @@
         <div class="nav-cont">
             <h1 class="header">Harmonization <span>Search Tool</span></h1> 
             <div class="quick-links-cont">
+                
                 <div class="quick-links">
                     <a href="https://storage2.patentsight.com/master/harmonizer-webapi/" target="_blank">
                         Harmonizer
@@ -20,7 +21,13 @@
                 </div>
                 <div class="quick-links">
                     <a href="https://gpss3.tipo.gov.tw/gpsskmc/gpssbkm?@@0.6206652056798594" target="_blank">
-                        TW Patent Search
+                        TW Patent (CN)
+                    </a>
+                    <a href="https://gpss3.tipo.gov.tw/gpsskmc/gpssbekm?@@0.03558854959167257" target="_blank">
+                        TW Patent (EN)
+                    </a>
+                    <a href="https://assignment.uspto.gov/patent/index.html#/patent/search" target="_blank">
+                        Reel/Frame USPTO
                     </a>
                 </div>
                 <div class="quick-links">
@@ -43,19 +50,35 @@
                     <a href="https://reedelsevier.sharepoint.com/sites/OG-LNGHarmoteam/Shared%20Documents/Forms/AllItems.aspx" target="_blank">
                         Sharepoint
                     </a>
-                    <a href="https://login.microsoftonline.com/9274ee3f-9425-4109-a27f-9fb15c10675d/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=2C5D0A8A41A810D4C54F411C14F99EAFC7CCA1DD835A9F1C%2DFFFAA66F529F9204EE43276C63DF105DEB023C7A952F6E0F4E136FE3B7624491&redirect%5Furi=https%3A%2F%2Freedelsevier%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=558b08a1%2D2090%2D4000%2Db70c%2Db9c248253dc9" target="_blank">
+                    <a href="https://reedelsevier.sharepoint.com/:x:/r/sites/OG-LNGHarmoteam/Shared%20Documents/General/Times%20and%20Schedules/Time%20invest%202024.xlsx?d=w62a2cabfacd349e5b7903df2f0fb96f7&csf=1&web=1&e=fd1pDQ&nav=MTVfe0FFRjNCNTE2LTlCODEtNDk0RC05ODhELUQ0NTYxNDdDQzIzNn0" target="_blank">
                         Time Invest 2024
                         
                     </a>
                 </div>
+                <div class="quick-links">
+                    <a href="https://reedelsevier.sharepoint.com/:b:/r/sites/OG-LNGHarmoteam/Shared%20Documents/General/NEW%20Guildlines%202023/Harmonization%20protocols/TD3%20Protocol%2020240131.pdf?csf=1&web=1&e=JNFrpe" target="_blank">
+                        TD3 Protocol
+                    </a>
+                    <a href="https://reedelsevier.sharepoint.com/:b:/r/sites/OG-LNGHarmoteam/Shared%20Documents/General/NEW%20Guildlines%202023/Harmonization%20protocols/Update%20Protocol%202023.pdf?csf=1&web=1&e=1DvtS5" target="_blank">
+                        Update Protocol
+                    </a>
+                    <a href="https://reedelsevier.sharepoint.com/:b:/r/sites/OG-LNGHarmoteam/Shared%20Documents/General/NEW%20Guildlines%202023/Harmonization%20protocols/Quick%20Update%20Protocol_20230203.pdf?csf=1&web=1&e=I8Iwj7" target="_blank">
+                        QU Protocol
+                        
+                    </a>
+
+                </div>
+
+                
+                <button class="dark-mode-btn" onclick=toggleDarkMode()>
+                    <i class="fa-regular fa-moon"></i>
+                </button>
             </div>
         </div>
         
     </div>
 
     <div class="tool-container">
-
-
         <div class="input-container">
             <div class="query-cont">
                 <div class="specify-container row-container">
@@ -63,12 +86,19 @@
                         <label for="quotation-marks">Exact Match</label>
                         <input type="checkbox" class="quotation-marks" id="quotation-marks">
                     </div>
-                    
                     <button id="clear" class="input-clear-btn">Clear All</button>
                 </div>
                 <div class="company-search row-container">
                     <input class="input-style" type="text" id="company-name" placeholder="Enter Company Name" required>
-                    <button id="company-name">Search Company Name</button>
+                    <!-- <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button> -->
+                    <div class="company-cont">
+                        <button id="company-name-btn">Search Company Name</button>
+                        <button id="headquarters">HQ</button>
+                    </div>
+                </div>
+                <div class="other-company-search row-container">
+                    <input type="text" class="address input-style" placeholder="Enter Other Company Name">
+                    <button id="other-company">Search for Relationship</button>
                 </div>
                 <div class="address-search row-container">
                     <input type="text" class="address input-style" placeholder="Enter Company City/State/Country">
@@ -83,37 +113,39 @@
                     </div>
                         
                 </div>
-                <div class="other-company-search row-container">
-                    <input type="text" class="address input-style" placeholder="Enter Other Company Name">
-                    <button id="other-company">Search for Relationship</button>
-                </div>
+                
             </div>
 
-            <div class="query-cont">
-                <div class="ultimate-owner row-container">
-                    <i class="fa-solid fa-clipboard"></i>
+            <div class="query-cont search-strings">
+                <div class="search-all row-container2">
+                    <div></div>
+                    <div></div>
+                    <button id="search-all">Search All</button>
+                </div>
+                <div class="ultimate-owner row-container2">
                     <input class="input-style" type="text" id="owner" value='("parent company" OR owner OR shareholder OR control OR majority)' required>
+                    <i class="fa-solid fa-clipboard"></i>
                     <button id="ultimate-owner">Search for Ultimate Owner</button>
                 </div>
-                <div class="name-change row-container">
-                    <i class="fa-solid fa-clipboard"></i>
+                <div class="name-change row-container2">
                     <input class="input-style" type="text" id="name-change" value='("previous name" OR "former name" OR former* OR "new name" OR "name change" OR "aka" OR "dba" OR "doing business as" OR "also known as" OR "fka" OR "formerly known as")
                     ' required>
+                    <i class="fa-solid fa-clipboard"></i>
                     <button id="name-change">Search for Name Changes</button>
                 </div>
-                <div class="subsidiaries row-container">
-                    <i class="fa-solid fa-clipboard"></i>
+                <div class="subsidiaries row-container2">
                     <input class="input-style" type="text" id="subsidiary" value='(subsidiary OR member OR affiliate)' required>
+                    <i class="fa-solid fa-clipboard"></i>
                     <button id="subsidiaries">Search for Subsidiaries</button>
                 </div>
-                <div class="acquisitions row-container">
-                    <i class="fa-solid fa-clipboard"></i>
+                <div class="acquisitions row-container2">
                     <input class="input-style" type="text" id="acquire" value='(acquired OR merger OR "joint-venture" OR JV OR integrate)' required>
+                    <i class="fa-solid fa-clipboard"></i>
                     <button id="acquisitions">Search for Acquistions</button>
                 </div>
-                <div class="divestments row-container">
-                    <i class="fa-solid fa-clipboard"></i>
+                <div class="divestments row-container2">
                     <input class="input-style" type="text" id="divest" value='(divest OR sold OR spin-off)' required>
+                    <i class="fa-solid fa-clipboard"></i>
                     <button id="acquisitions">Search for Divestments</button>
                 </div>
 
@@ -127,81 +159,91 @@
             </div>
 
 
-            <div class="query-cont">
-                <textarea class="more-notes" placeholder="Your notes here"></textarea>
-            </div>
+            <!-- <div class="query-cont">
+                <textarea class="more-notes" placeholder="This is your sticky notes"></textarea>
+            </div> -->
         </div>
 
         <div class="notes-container">
-            <button id="clear-notes" class="textarea-clear-btn">Clear All</button>
-            <div class="links-container">
-                <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+            <div class="clear-notes-btn">
+                <div></div>
+                <button id="clear-notes" class="textarea-clear-btn">Clear All</button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="links-container">
                 <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
+                <button class="textarea-links-btn copy"><i class="fa-solid fa-copy"></i></button>
+                <button class="textarea-links-btn paste"><i class="fa-solid fa-paste"></i></button>
+                <button class="textarea-links-btn delete"><i class="fa-solid fa-trash-can"></i></button>
             </div>
-            <div class="links-container">
-                <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
-            </div>
-            <div class="links-container">
-                <textarea class="links" placeholder="Paste notes/links here"></textarea>
-                <button class="textarea-links-btn">Copy</button>
-            </div>
-            
+        </div>    
     </div>
 
-    
     <div class="footer">
-        <h4 class="other-info">About</h4>
-        <h3 class="footer-name">&copy; 2024 
-            <a href="https://nimromelo.github.io/Portfolio/#home"
+        <h3 class="footer-name">&copy; 2024
+            <i class="fa-brands fa-github"></i>
+            <a href="https://github.com/NimRomelo"
             target="_blank">NR Designs</a>
         </h3>
-        <h4 class="other-info">Contact</h4>
-
     </div>
 
 </body>

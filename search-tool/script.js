@@ -3,23 +3,82 @@ const inputButtons = document.querySelector(".input-container");
 const inputContBtns = inputButtons.querySelectorAll("button");
 const exactMatch = document.querySelector("#quotation-marks");
 const isinNum = document.querySelector(".isin-number");
-const copyButtons = document.querySelectorAll(".textarea-links-btn");
+const notesButtons = document.querySelector(".notes-container");
+const copyButtons = document.querySelectorAll(".copy");
+const pasteButtons = document.querySelectorAll(".paste");
+const deleteButtons = document.querySelectorAll(".delete");
 const allInputElements = inputButtons.querySelectorAll("input");
-
-console.log(allInputElements);
-
-const allTextArea = document.querySelectorAll("textarea");
+const allTextArea = notesButtons.querySelectorAll("textarea");
 const clearInputBtn = document.querySelector("#clear");
 const clearNotesBtn = document.querySelector("#clear-notes");
 const clipboards = document.querySelectorAll(".fa-clipboard");
+const darkModeBtn = document.querySelector(".dark-mode-btn");
+
+console.log(clipboards);
 
 let inputValues = [];
 let noteValues = [];
 
+let darkmode = false;
 
+function toggleDarkMode() {
+
+    const label = document.querySelector('.check-cont');
+    const labelName = label.querySelector('label');
+    
+    if(!darkmode) {
+        labelName.style.color = 'var(--cream)'
+        // document.html.classList.toggle('dark-mode');
+        document.body.classList.toggle('dark-mode');
+        allInputElements.forEach(input =>{
+        input.style.backgroundColor = 'var(--navy-blue)'
+        input.style.color = 'var(--cream)'
+        input.style.boxShadow = 'none';
+    })
+        allTextArea.forEach(text =>{
+        text.style.backgroundColor = 'var(--navy-blue)'
+        text.style.color = 'var(--cream)'
+        text.style.boxShadow = 'none';
+    })
+
+    darkmode = !darkmode;
+    darkModeBtn.innerHTML =`<i class="fa-regular fa-sun"></i>`;
+
+    localStorage.setItem('darkModeOn', true);
+
+    } else {
+        labelName.style.color = 'var(--navy-blue)'
+        document.body.classList.toggle('dark-mode');
+        allInputElements.forEach(input =>{
+        input.style.backgroundColor = 'white'
+        input.style.color = 'var(--navy-blue)'
+        // input.style.boxShadow = '1px 1px 2px grey';
+        })
+   
+        allTextArea.forEach(text =>{
+        text.style.backgroundColor = 'white'
+        text.style.color = 'var(--navy-blue)' 
+        // text.style.boxShadow = '1px 1px 2px grey';
+        
+        })  
+
+    darkmode = !darkmode;
+    darkModeBtn.innerHTML =`<i class="fa-regular fa-moon"></i>`;
+
+    localStorage.removeItem('darkModeOn');
+
+    }
+  
+}
+
+
+
+
+//load saved data
 document.addEventListener("DOMContentLoaded", ()=>{
     const storedInput = localStorage.getItem('inputValues');
     const storedNotes = localStorage.getItem('noteValues');
+    const dark = localStorage.getItem('darkModeOn');
 
     if (storedInput) {
 
@@ -38,9 +97,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
             text.value = parsedNoteValues[index];
         })
     }
+
+    if (dark) {
+        toggleDarkMode();
+    }
 })
 
-
+//save changes in input fields
 allInputElements.forEach(input=>{
     input.addEventListener('input', saveInputValues);
 });
@@ -55,6 +118,8 @@ function saveInputValues () {
         localStorage.setItem('inputValues', JSON.stringify(inputValues));
 }
 
+
+//save changes in note fields
 allTextArea.forEach(text=>{
     text.addEventListener('input', saveNoteValues);
 });
@@ -68,7 +133,7 @@ function saveNoteValues () {
         localStorage.setItem('noteValues', JSON.stringify(noteValues));
 }
 
-
+//buttons for pasting default search strings
 clipboards.forEach(clipboard => {
     clipboard.addEventListener('click', (e)=>{
         const targetparent = e.target.parentElement;
@@ -94,33 +159,114 @@ clipboards.forEach(clipboard => {
     })
 })
 
-
+//clear input fields
 clearInputBtn.addEventListener('click', ()=>{
-    allInputElements.forEach(input=>{
-        input.value = '';
-        saveInputValues();
+    const deleteConfirmed = confirm('Delete all queries?');
+    if (deleteConfirmed) {
+        allInputElements.forEach(input=>{
+            input.value = '';
+            saveInputValues();
     })
+}
 })
 
-
+//clear note fields
 clearNotesBtn.addEventListener('click', ()=>{
-    allTextArea.forEach(text=>{
-        text.value = '';
-        saveNoteValues();
 
-        console.log('clicked');
+    const deleteConfirmed = confirm('Delete all notes?');
+
+    if (deleteConfirmed) {
+        allTextArea.forEach(text=>{
+            text.value = '';
+            saveNoteValues();
+        })
+    }
+
+})
+
+
+//delete individual note fields
+deleteButtons.forEach(button=>{
+    button.addEventListener('click', e => {
+        e.preventDefault();
+
+        const targetBtn = e.currentTarget;
+        const targetParent = targetBtn.parentElement;
+        const targetInput = targetParent.querySelector(".links");
+
+        if(targetInput) {
+
+            targetInput.value = ''; 
+            targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+
+            setTimeout(()=>{
+                targetBtn.innerHTML = `<i class="fa-solid fa-trash-can">`;
+            }, 500);
+        }
+
+        saveNoteValues();
+    })
+})
+
+//copy individual note fields
+copyButtons.forEach( (button) => {
+    button.addEventListener('click', (e)=>{
+        e.preventDefault();
+
+        const targetBtn = e.currentTarget;
+        const targetParent = targetBtn.parentElement;
+        const targetInput = targetParent.querySelector(".links");
+        
+
+        if(targetInput) {
+            targetInput.select();
+            navigator.clipboard.writeText(targetInput.value);  
+            targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+
+            setTimeout(()=>{
+                targetBtn.innerHTML = `<i class="fa-solid fa-copy">`;
+            }, 500);
+        }
+        
+    })
+})
+
+//paste from clipboard
+
+pasteButtons.forEach( (button)=>{
+    button.addEventListener('click', e => {
+        e.preventDefault();
+
+        const targetBtn = e.currentTarget;
+        const targetParent = targetBtn.parentElement;
+        const targetInput = targetParent.querySelector(".links");
+
+        navigator.clipboard.readText().then((clipText) => (targetInput.value = clipText));
+        
+        targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+
+            setTimeout(()=>{
+                targetBtn.innerHTML = `<i class="fa-solid fa-paste">`;
+            }, 500);
+    
     })
 })
 
 
+//execute searches
 inputContBtns.forEach( (button) => {
     button.addEventListener('click', (e)=>{
         const targetParent = e.target.parentElement;
         const targetInput = targetParent.querySelector("input");
 
         if (companyName.value !== '') {
-            if (button.id === 'company-name') {
-                searchCompanyOnly(targetInput.value);
+            if (button.id === 'company-name-btn') {
+                const target = targetParent.parentElement;
+                const targetElement = target.querySelector("input");
+                searchCompanyOnly(targetElement.value);
+            }
+            else if (button.id === 'headquarters') {
+                searchCompanyWithOtherQuery(companyName.value, 'headquarters');
             }
             else if (button.id === 'stock') {
                 searchCompanyWithOtherQuery(companyName.value, 'stock')
@@ -137,6 +283,24 @@ inputContBtns.forEach( (button) => {
             }
             else if (button.id === 'other-company' || button.id === 'custom'){
                     searchRelationship(companyName.value, targetInput.value);
+            }
+            else if (button.id === 'address') {
+                searchRelationship(companyName.value, targetInput.value)
+            }
+            else if (button.id === 'search-all') {
+                const owner = document.querySelector('#owner').value;
+                const nameChange = document.querySelector('#name-change').value;
+                const subsidiary = document.querySelector('#subsidiary').value;
+                const acquire = document.querySelector('#acquire').value;
+                const divest = document.querySelector('#divest').value;
+
+                const allSearch = [owner, nameChange, subsidiary, acquire, divest];
+
+
+                console.log(allSearch)
+                
+                searchAll(companyName.value, allSearch);
+
             }
             else {
                 searchCompanyWithOtherQuery(companyName.value, targetInput.value)
@@ -156,26 +320,37 @@ inputContBtns.forEach( (button) => {
     })
 })
 
-copyButtons.forEach( (button) => {
-    button.addEventListener('click', (e)=>{
-        e.preventDefault();
 
-        const targetParent = e.target.parentElement;
-        const targetInput = targetParent.firstElementChild;
+function searchAll (company, stringArray) {
 
-        if (targetInput.value !== '') {
+    if(exactMatch.checked === true && stringArray.length !== 0) {
+
+        stringArray.forEach(string=>{
+
+            if (string !== '') {
+                company = `"${company}"`
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + string)}`;
+                
+                window.open(googleSearchUrl, '_blank');
+            }
             
-            targetInput.select(); 
-            navigator.clipboard.writeText(targetInput.value);   
-        }
-            button.textContent = 'Copied';
+        })
 
-        setTimeout(()=>{
-            button.textContent = 'Copy';
-        }, 500);
-    })
-})
+        console.log('success');
+        
+    } else if(stringArray.length !== 0) {
+        stringArray.forEach(string=>{
 
+            if (string !== '') {
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + string)}`;
+                window.open(googleSearchUrl, '_blank');
+            }
+            
+        })
+    } else {
+        alert ('Please enter necessary information.')
+    }
+}
 
 
 function searchCompanyOnly(name) {
