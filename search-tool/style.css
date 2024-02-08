@@ -216,7 +216,7 @@ body.dark-mode {
     width: 160px;
     height: 2rem;
     font-size: 0.7rem;
-    background-color: var(--pink);
+    background-color: #EF4040;
     color: var(--cream)
 }
 
@@ -226,8 +226,8 @@ body.dark-mode {
 
 
 #clear:hover, #clear-notes:hover {
-    background-color: #EF4040;
-    /* color: var(--cream); */
+    background-color: var(--pink);
+    color: var(--navy-blue)
 }
 
 .input-style {
