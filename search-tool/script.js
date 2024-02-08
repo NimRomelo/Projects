@@ -331,11 +331,11 @@ inputContBtns.forEach( (button) => {
 function searchAll (company, stringArray) {
 
     if(exactMatch.checked === true && stringArray.length !== 0) {
-
+        
+        company = `"${company}"`
         stringArray.forEach(string=>{
 
             if (string !== '') {
-                company = `"${company}"`
                 const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + string)}`;
                 
                 window.open(googleSearchUrl, '_blank');
