@@ -205,6 +205,8 @@ deleteButtons.forEach(button=>{
         }
 
         saveNoteValues();
+
+       
     })
 })
 
@@ -241,16 +243,16 @@ pasteButtons.forEach( (button)=>{
         const targetParent = targetBtn.parentElement;
         const targetInput = targetParent.querySelector(".links");
 
-        navigator.clipboard.readText().then((clipText) => (targetInput.value = clipText));
+        navigator.clipboard.readText().then((clipText) => { 
+            targetInput.value = clipText
+            saveNoteValues();       
+        });
         
         targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
-
-            setTimeout(()=>{
-                targetBtn.innerHTML = `<i class="fa-solid fa-paste">`;
-            }, 500);
-
-        saveNoteValues();
-    
+        setTimeout(()=>{
+            targetBtn.innerHTML = `<i class="fa-solid fa-paste">`;
+        }, 500); 
+        console.log('notesSaved')
     })
 })
 
