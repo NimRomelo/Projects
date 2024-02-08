@@ -30,9 +30,14 @@ html, body {
     height: 100%;
 }
 
+html.dark-mode {
+    background-color: rgb(46, 46, 46);
+}
+
 body {
     height: 100%;
     transition: all 0.5s ease;
+    
 }
 
 body.dark-mode {
@@ -143,6 +148,7 @@ body.dark-mode {
     padding: 0px 5% 0px 5%;
     align-items: flex-start;
     justify-content: flex-start;
+    padding-bottom: 30px;
     /* height: 100%; */
     /* border: 1px solid blue; */
 }

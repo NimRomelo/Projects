@@ -25,11 +25,13 @@ function toggleDarkMode() {
 
     const label = document.querySelector('.check-cont');
     const labelName = label.querySelector('label');
+    const html = document.querySelector("html");
     
     if(!darkmode) {
         labelName.style.color = 'var(--cream)'
         // document.html.classList.toggle('dark-mode');
         document.body.classList.toggle('dark-mode');
+        html.classList.toggle('dark-mode');
         allInputElements.forEach(input =>{
         input.style.backgroundColor = 'var(--navy-blue)'
         input.style.color = 'var(--cream)'
@@ -49,6 +51,7 @@ function toggleDarkMode() {
     } else {
         labelName.style.color = 'var(--navy-blue)'
         document.body.classList.toggle('dark-mode');
+        html.classList.toggle('dark-mode');
         allInputElements.forEach(input =>{
         input.style.backgroundColor = 'white'
         input.style.color = 'var(--navy-blue)'
