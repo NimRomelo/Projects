@@ -10,6 +10,7 @@
     --light-orange: #F3B95F;
     --purple: #5D3587;
     --light-blue: #7BD3EA;
+    --grey: #607274;
 }
 
 
@@ -168,11 +169,11 @@ body.dark-mode {
 }
 
 .bing-svg path{
-    fill: var(--navy-blue);  
+    fill: var(--grey);  
 }
 
 .google-svg path{
-    fill: var(--navy-blue);  
+    fill: var(--grey);  
 }
 
 /* Tool container */
@@ -204,12 +205,12 @@ body.dark-mode {
 
 .query-cont .fa-clipboard {
     transition: all 0.1s ease;
-    color: var(--navy-blue);
+    color: var(--grey);
     /* margin-right:76px;
     margin-left: 4px; */
 }
 
-.fa-clipboard:hover {
+.query-cont .fa-clipboard:hover {
     cursor: pointer;
     color: var(--orange);
 }
@@ -313,6 +314,10 @@ body.dark-mode {
 
 #stock {
     font-size: 1.2rem;
+}
+
+#stock .fa-building-columns {
+    color: var(--navy-blue);
 }
 
 #openfigi {
@@ -428,6 +433,8 @@ body.dark-mode {
 }
 
 
+
+
 .notes-container button {
     padding: 10px;
     font-size: 0.7rem;
@@ -438,14 +445,19 @@ body.dark-mode {
     border-radius: 5px;
     border: 0px;
     transition: all 0.1s ease;
-    color: var(--navy-blue);
+    color: var(--grey);
     background-color: transparent;
 
+}
+
+.fa-solid {
+    color: var(--grey);
 }
 
 .button-label {
     font-size: 0.5rem;
     display: block;
+    color: var(--grey);
 }
 
 .notes-container .copy:hover {
@@ -549,7 +561,7 @@ body.dark-mode {
 
 .row-container .row-button i {
     font-size: 0.8rem;
-    color: var(--navy-blue);
+    color: var(--grey);
 }
 
 .row-container .input-paste:hover {
@@ -560,3 +572,4 @@ body.dark-mode {
 .row-container .input-delete:hover {
     background-color: var(--pink);
 }
+

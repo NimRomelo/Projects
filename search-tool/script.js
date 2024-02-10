@@ -60,13 +60,6 @@ function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
         html.classList.toggle('dark-mode');
        
-        allIcons.forEach(icon => {
-            icon.style.color = 'grey'
-        })
-        allIconText.forEach(text=>{
-            text.style.color ='grey'
-        })
-
         allInputElements.forEach(input =>{
         input.style.backgroundColor = 'var(--navy-blue)'
         input.style.color = 'var(--cream)'
@@ -78,19 +71,9 @@ function toggleDarkMode() {
         text.style.boxShadow = 'none';
     })
 
-        clipboards.forEach(clip=>{
-            clip.addEventListener('mouseenter', () => {
-                clip.style.color = 'var(--orange)'; // Change color on hover
-            });
-            clip.addEventListener('mouseleave', () => {
-                clip.style.color = 'grey'; // Change color back on mouse leave
-            });
-    })
 
     darkmode = !darkmode;
     darkModeBtn.innerHTML =`<i class="fa-regular fa-sun"></i>`;
-
-
 
     localStorage.setItem('darkModeOn', true);
 
@@ -102,13 +85,13 @@ function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
         html.classList.toggle('dark-mode');
 
-        allIcons.forEach(icon => {
-            icon.style.color = 'var(--navy-blue)'
-        })
+        // allIcons.forEach(icon => {
+        //     icon.style.color = 'var(--navy-blue)'
+        // })
 
-        allIconText.forEach(text=>{
-            text.style.color ='var(--naby-blue'
-        })
+        // allIconText.forEach(text=>{
+        //     text.style.color ='var(--navy-blue)'
+        // })
 
         allInputElements.forEach(input =>{
         input.style.backgroundColor = 'white'
@@ -122,15 +105,6 @@ function toggleDarkMode() {
         // text.style.boxShadow = '1px 1px 2px grey';
         
         }) 
-
-        clipboards.forEach(clip=>{
-            clip.addEventListener('mouseenter', () => {
-                clip.style.color = 'var(--orange)'; // Change color on hover
-            });
-            clip.addEventListener('mouseleave', () => {
-                clip.style.color = 'var(--navy-blue)'; // Change color back on mouse leave
-            });
-    })
 
     darkmode = !darkmode;
     darkModeBtn.innerHTML =`<i class="fa-regular fa-moon"></i>`;
@@ -321,7 +295,6 @@ deleteButtons.forEach(button=>{
 
         saveNoteValues();
 
-       
     })
 })
 
@@ -412,9 +385,10 @@ pasteButtons.forEach( (button)=>{
         });
         
         targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+
         setTimeout(()=>{
             targetBtn.innerHTML = `<i class="fa-solid fa-paste"></i>
-            <span class="button-label">Paste</span`;
+            <span class="button-label">Paste</span>`;
         }, 500); 
         console.log('notesSaved')
     })
