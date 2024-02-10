@@ -418,69 +418,71 @@ inputPaste.forEach((button) => {
 
 //execute searches
 inputContBtns.forEach( (button) => {
-    button.addEventListener('click', (e)=>{
-        const targetParent = e.target.parentElement;
-        const targetInput = targetParent.querySelector("input");
 
-        if (companyName.value !== '') {
-            if (button.id === 'company-name-btn') {
-                const target = targetParent.parentElement;
-                const targetElement = target.querySelector("input");
-                searchCompanyOnly(targetElement.value);
-            }
-            else if (button.id === 'headquarters') {
-                searchCompanyWithOtherQuery(companyName.value, 'headquarters');
-            }
-            else if (button.id === 'stock') {
-                searchCompanyWithOtherQuery(companyName.value, 'stock')
-            } 
-            else if (button.id === 'isin') {
-                searchCompanyWithOtherQuery(companyName.value, '"ISIN"')
-            }
-            else if (button.id === 'openfigi') {
+    if (!(button.id === "clear" || button.id === 'copy' || button.id === 'paste' || button.id === 'delete')){
+
+        button.addEventListener('click', (e)=>{
+            const targetParent = e.target.parentElement;
+            const targetInput = targetParent.querySelector("input");
+    
+            if (companyName.value !== '') {
+                if (button.id === 'company-name-btn') {
+                    const target = targetParent.parentElement;
+                    const targetElement = target.querySelector("input");
+                    searchCompanyOnly(targetElement.value);
+                }
+                else if (button.id === 'headquarters') {
+                    searchCompanyWithOtherQuery(companyName.value, 'headquarters');
+                }
+                else if (button.id === 'stock') {
+                    searchCompanyWithOtherQuery(companyName.value, 'stock')
+                } 
+                else if (button.id === 'isin') {
+                    searchCompanyWithOtherQuery(companyName.value, '"ISIN"')
+                }
+                else if (button.id === 'openfigi') {
+                    if (isinNum.value !== '') {
+                        searchFinanceInfo(isinNum.value);
+                    } else {
+                        alert('Please input ISIN number');
+                    }
+                }
+                else if (button.id === 'other-company' || button.id === 'custom'){
+                        searchRelationship(companyName.value, targetInput.value);
+                }
+                else if (button.id === 'address') {
+                    searchRelationship(companyName.value, targetInput.value)
+                }
+                else if (button.id === 'search-all') {
+                    const owner = document.querySelector('#owner').value;
+                    const nameChange = document.querySelector('#name-change').value;
+                    const subsidiary = document.querySelector('#subsidiary').value;
+                    const acquire = document.querySelector('#acquire').value;
+                    const divest = document.querySelector('#divest').value;
+    
+                    const allSearch = [owner, nameChange, subsidiary, acquire, divest];
+    
+    
+                    console.log(allSearch)
+                    
+                    searchAll(companyName.value, allSearch);
+    
+                }
+                else {
+                    searchCompanyWithOtherQuery(companyName.value, targetInput.value)
+                }
+            } else if (button.id === 'openfigi') {
                 if (isinNum.value !== '') {
                     searchFinanceInfo(isinNum.value);
                 } else {
                     alert('Please input ISIN number');
                 }
+            } 
+            else {
+                alert('Please input Company Name.');
             }
-            else if (button.id === 'other-company' || button.id === 'custom'){
-                    searchRelationship(companyName.value, targetInput.value);
-            }
-            else if (button.id === 'address') {
-                searchRelationship(companyName.value, targetInput.value)
-            }
-            else if (button.id === 'search-all') {
-                const owner = document.querySelector('#owner').value;
-                const nameChange = document.querySelector('#name-change').value;
-                const subsidiary = document.querySelector('#subsidiary').value;
-                const acquire = document.querySelector('#acquire').value;
-                const divest = document.querySelector('#divest').value;
-
-                const allSearch = [owner, nameChange, subsidiary, acquire, divest];
-
-
-                console.log(allSearch)
-                
-                searchAll(companyName.value, allSearch);
-
-            }
-            else if (button.id !== 'clear') {
-                searchCompanyWithOtherQuery(companyName.value, targetInput.value)
-            }
-        } else if (button.id === 'openfigi') {
-            if (isinNum.value !== '') {
-                searchFinanceInfo(isinNum.value);
-            } else {
-                alert('Please input ISIN number');
-            }
-        } else if (button.id === "clear" || button.id === 'copy' || button.id === 'paste' || button.id === 'delete') {
-            return;
-        } 
-        else {
-            alert('Please input Company Name.');
-        }
-    })
+        })
+    }
 })
 
 
