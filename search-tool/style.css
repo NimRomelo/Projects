@@ -141,11 +141,17 @@ body.dark-mode {
 }
 
 .google-icon {
-    width: 30px;
+    width: 40px;
     height: 30px;
     margin-left: 30px;
     cursor: pointer;
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
 }
+
 
 .selection-bar {
     content: '';
@@ -154,18 +160,27 @@ body.dark-mode {
     border-radius: 2px;
     background-color: var(--orange);
     position: absolute;
-    transform: translate(-2px, 11px);
+    transform: translate(-2px, 13px);
     transition: all 0.3s ease;
 
 
 }
 
 .bing-icon {
-    width: 30px;
+    width: 40px;
     height: 30px;
     margin-left: 10px;
-    cursor: pointer;
-    
+    cursor: pointer;  
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.bing-icon:hover, .google-icon:hover {
+    background-color: var(--orange);
+
 }
 
 .bing-svg path{
@@ -175,6 +190,10 @@ body.dark-mode {
 .google-svg path{
     fill: var(--grey);  
 }
+
+
+
+
 
 /* Tool container */
 

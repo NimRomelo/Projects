@@ -137,12 +137,12 @@ bingIcon.addEventListener('click', ()=> {
 function toggleSearchEngine (searchEng) {
 
     if (searchEng === 'bing') {
-        slideBar.style.transform = 'translate(31px, 11px)';
+        slideBar.style.transform = 'translate(31px, 13px)';
         searchEngine = 'bing';
         localStorage.setItem('searchEngine', 'bing')
     }
     else if (searchEng === 'google') {
-        slideBar.style.transform = 'translate(-2px, 11px)';
+        slideBar.style.transform = 'translate(-2px, 13px)';
         searchEngine = 'google';
         localStorage.setItem('searchEngine', 'google')
     }
