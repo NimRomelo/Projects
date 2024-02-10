@@ -47,7 +47,7 @@ body.dark-mode {
 
 .nav-bar {
     background-color: var(--navy-blue);
-    /* height: 100%; */
+    /* padding-top: 10px; */
 }
 
 .nav-cont {
@@ -70,7 +70,7 @@ body.dark-mode {
 
 .header {
     color: var(--cream);
-    /* margin-left: 5%; */
+
     width:60%;
     
 }
@@ -79,16 +79,15 @@ body.dark-mode {
     color: var(--orange);
 }
 
+
+
 .quick-links-cont {
     color: var(--cream);
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
     gap: 10px;
-    /* margin-right: 20px; */
     width: 100%;
-    /* justify-content: flex-end; */
-    /* background-color: var(--purple); */
 
 }
 
@@ -114,16 +113,6 @@ body.dark-mode {
 
 }
 
-/* .quick-links-cont a::before {
-    content: '';
-    width: 3px;
-    height: 3px;
-    background-color: var(--orange);
-    border-radius: 50%;
-    position: absolute;
-    translate: -10px 4px;
-} */
-
 .dark-mode-btn {
     background-color: transparent;
     border: none;
@@ -134,8 +123,56 @@ body.dark-mode {
 }
 
 .dark-mode-btn i {
-    color: var(--light-orange);
-    font-size: 1.1rem;
+    color: var(--cream);
+    font-size: 1.4rem;
+    /* transform: translateY(-7px); */
+}
+
+.search-engine-cont {
+    display: flex;
+    width:60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-engine {
+    display: none;
+}
+
+.google-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.selection-bar {
+    content: '';
+    width: 20px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--orange);
+    position: absolute;
+    transform: translate(-2px, 11px);
+    transition: all 0.3s ease;
+
+
+}
+
+.bing-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+    
+}
+
+.bing-svg path{
+    fill: var(--navy-blue);  
+}
+
+.google-svg path{
+    fill: var(--navy-blue);  
 }
 
 /* Tool container */
@@ -149,8 +186,6 @@ body.dark-mode {
     align-items: flex-start;
     justify-content: flex-start;
     padding-bottom: 30px;
-    /* height: 100%; */
-    /* border: 1px solid blue; */
 }
 
 .input-container {
@@ -159,7 +194,6 @@ body.dark-mode {
 } 
 
 .query-cont {
-    /* background-color: var(--cream); */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -170,17 +204,19 @@ body.dark-mode {
 
 .query-cont .fa-clipboard {
     transition: all 0.1s ease;
-    color: grey;
+    color: var(--navy-blue);
+    /* margin-right:76px;
+    margin-left: 4px; */
 }
 
-.query-cont .fa-clipboard:hover {
+.fa-clipboard:hover {
     cursor: pointer;
     color: var(--orange);
 }
 
 .row-container {
     display: grid;
-    grid-template-columns: 5fr 1fr;
+    grid-template-columns: 5fr 0fr 1fr;
     grid-template-rows: 1fr;
     gap: 10px;
 }
@@ -194,6 +230,21 @@ body.dark-mode {
     justify-content: center;
 }
 
+.specify-container {
+    display: grid;
+    grid-template-columns: 100px 100px 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+    align-items: center;
+    justify-content: start;
+}
+
+.clear-btn-cont {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 #search-all {
     background-color: var(--light-orange);
 }
@@ -205,27 +256,23 @@ body.dark-mode {
 
 .check-cont {
     font-size: 0.8rem;
-    width: 100%;
+    width: 200px;
     display: flex;
     align-items: center;
     height: 2rem;
 }
 
-#clear, #clear-notes {
+#clear-notes {
     align-self: flex-end;
-    width: 160px;
+    width: 120px;
     height: 2rem;
     font-size: 0.7rem;
     background-color: #EF4040;
-    color: var(--cream)
+    color: var(--cream);
+    margin-right: 8px;
 }
 
-#clear {
-    width: 200px;
-}
-
-
-#clear:hover, #clear-notes:hover {
+#clear-notes:hover {
     background-color: var(--pink);
     color: var(--navy-blue)
 }
@@ -236,7 +283,6 @@ body.dark-mode {
     text-align: center;
     border-radius: 5px;
     border: 0px;
-    /* box-shadow: 1px 1px 2px grey; */
     width: 100%;
     min-width: 50%;
 
@@ -257,9 +303,12 @@ body.dark-mode {
     transition: all 0.1s ease;
 }
 
+
+
 #other-company, #custom {
     background-color: var(--purple);
     color: var(--cream);
+    height: 3rem;
 }
 
 #stock {
@@ -295,7 +344,7 @@ body.dark-mode {
     height: 3rem;
 }
 
-#company-name {
+#company-name, .relationship, .custom {
     height: 3rem;
     font-size: 1.1rem;
 }
@@ -340,6 +389,7 @@ body.dark-mode {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(13, auto);
     gap: 5px;
+    padding-top: 10px;
 }
 
 
@@ -378,26 +428,36 @@ body.dark-mode {
 }
 
 
-.notes-container button, .input-container .fa-trash-can {
+.notes-container button {
     padding: 10px;
     font-size: 0.7rem;
     text-align: center;
     cursor: pointer;
-    width: 50px;
+    width: 40px;
     height: 100%;
-    background-color: var(--light-blue);
     border-radius: 5px;
     border: 0px;
     transition: all 0.1s ease;
     color: var(--navy-blue);
+    background-color: transparent;
 
 }
 
-.notes-container .paste {
+.button-label {
+    font-size: 0.5rem;
+    display: block;
+}
+
+.notes-container .copy:hover {
+    background-color: var(--light-blue);
+}
+
+
+.notes-container .paste:hover {
     background-color: var(--light-green);
 }
 
-.notes-container .delete {
+.notes-container .delete:hover {
     background-color: var(--pink);
 }
 
@@ -407,22 +467,26 @@ body.dark-mode {
     align-items: center;
     justify-content: flex-end;
     width: 100%;
+    margin-bottom: 3px;
 }
 
-.notes-container .input-clear-btn {
+.notes-container #clear {
     height: 2rem;
     width: 250px;
-    background-color: rgb(238, 97, 97);
-    color: var(--cream)
+    
 }
 
 
-.notes-container .input-clear-btn:hover {
+.input-container #clear {
+    background-color: #EF4040;
+    color: var(--cream);
+}
+
+
+.input-container #clear:hover {
     background-color: var(--pink);
     color: var(--navy-blue);
 }
-
-
 
 
 .footer {
@@ -460,4 +524,39 @@ body.dark-mode {
 
 .fa-github {
     color: var(--cream);
+}
+
+.row-btn-cont {
+    display: flex;
+    gap: 3px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.row-container .row-button {
+    width: 30px;
+    font-size: 0.5rem;
+    height: 30px;
+    padding: 0px;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.row-container .row-button:hover {
+    background-color: var(--light-blue);
+    
+}
+
+.row-container .row-button i {
+    font-size: 0.8rem;
+    color: var(--navy-blue);
+}
+
+.row-container .input-paste:hover {
+    background-color: var(--light-green);
+}
+
+
+.row-container .input-delete:hover {
+    background-color: var(--pink);
 }

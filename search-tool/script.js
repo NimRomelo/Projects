@@ -4,15 +4,30 @@ const inputContBtns = inputButtons.querySelectorAll("button");
 const exactMatch = document.querySelector("#quotation-marks");
 const isinNum = document.querySelector(".isin-number");
 const notesButtons = document.querySelector(".notes-container");
+
 const copyButtons = document.querySelectorAll(".copy");
 const pasteButtons = document.querySelectorAll(".paste");
 const deleteButtons = document.querySelectorAll(".delete");
+
+const inputCopy = document.querySelectorAll('#copy');
+const inputPaste = document.querySelectorAll('#paste');
+const inputDelete = document.querySelectorAll('#delete');
+
 const allInputElements = inputButtons.querySelectorAll("input");
 const allTextArea = notesButtons.querySelectorAll("textarea");
 const clearInputBtn = document.querySelector("#clear");
 const clearNotesBtn = document.querySelector("#clear-notes");
 const clipboards = document.querySelectorAll(".fa-clipboard");
 const darkModeBtn = document.querySelector(".dark-mode-btn");
+
+const body = document.querySelector('body');
+
+const allIcons = body.querySelectorAll('i');
+
+console.log(allIcons);
+
+const allIconText = notesButtons.querySelectorAll('span');
+
 
 console.log(clipboards);
 
@@ -21,17 +36,37 @@ let noteValues = [];
 
 let darkmode = false;
 
+let quotationsChecked = exactMatch.checked;
+
+exactMatch.addEventListener('change', (e)=>{
+    quotationsChecked = e.target.checked;
+    console.log(quotationsChecked);
+
+    localStorage.setItem('exactMatch', quotationsChecked);
+})
+
+
+
 function toggleDarkMode() {
 
     const label = document.querySelector('.check-cont');
     const labelName = label.querySelector('label');
     const html = document.querySelector("html");
-    
+
+
+    //toggle darkmode
     if(!darkmode) {
-        labelName.style.color = 'var(--cream)'
-        // document.html.classList.toggle('dark-mode');
+        labelName.style.color = 'var(--cream)';
         document.body.classList.toggle('dark-mode');
         html.classList.toggle('dark-mode');
+       
+        allIcons.forEach(icon => {
+            icon.style.color = 'grey'
+        })
+        allIconText.forEach(text=>{
+            text.style.color ='grey'
+        })
+
         allInputElements.forEach(input =>{
         input.style.backgroundColor = 'var(--navy-blue)'
         input.style.color = 'var(--cream)'
@@ -43,15 +78,38 @@ function toggleDarkMode() {
         text.style.boxShadow = 'none';
     })
 
+        clipboards.forEach(clip=>{
+            clip.addEventListener('mouseenter', () => {
+                clip.style.color = 'var(--orange)'; // Change color on hover
+            });
+            clip.addEventListener('mouseleave', () => {
+                clip.style.color = 'grey'; // Change color back on mouse leave
+            });
+    })
+
     darkmode = !darkmode;
     darkModeBtn.innerHTML =`<i class="fa-regular fa-sun"></i>`;
 
+
+
     localStorage.setItem('darkModeOn', true);
 
+
+
+    //toggle lightmode
     } else {
         labelName.style.color = 'var(--navy-blue)'
         document.body.classList.toggle('dark-mode');
         html.classList.toggle('dark-mode');
+
+        allIcons.forEach(icon => {
+            icon.style.color = 'var(--navy-blue)'
+        })
+
+        allIconText.forEach(text=>{
+            text.style.color ='var(--naby-blue'
+        })
+
         allInputElements.forEach(input =>{
         input.style.backgroundColor = 'white'
         input.style.color = 'var(--navy-blue)'
@@ -63,7 +121,16 @@ function toggleDarkMode() {
         text.style.color = 'var(--navy-blue)' 
         // text.style.boxShadow = '1px 1px 2px grey';
         
-        })  
+        }) 
+
+        clipboards.forEach(clip=>{
+            clip.addEventListener('mouseenter', () => {
+                clip.style.color = 'var(--orange)'; // Change color on hover
+            });
+            clip.addEventListener('mouseleave', () => {
+                clip.style.color = 'var(--navy-blue)'; // Change color back on mouse leave
+            });
+    })
 
     darkmode = !darkmode;
     darkModeBtn.innerHTML =`<i class="fa-regular fa-moon"></i>`;
@@ -74,7 +141,38 @@ function toggleDarkMode() {
   
 }
 
+//toggle search engine
 
+
+
+const googleIcon = document.querySelector(".google-icon");
+const bingIcon = document.querySelector(".bing-icon");
+const slideBar = document.querySelector(".selection-bar");
+let searchEngine = 'google';
+
+googleIcon.addEventListener('click', () => {
+    toggleSearchEngine('google')
+});
+
+bingIcon.addEventListener('click', ()=> {
+    toggleSearchEngine('bing')
+});
+
+
+
+function toggleSearchEngine (searchEng) {
+
+    if (searchEng === 'bing') {
+        slideBar.style.transform = 'translate(31px, 11px)';
+        searchEngine = 'bing';
+        localStorage.setItem('searchEngine', 'bing')
+    }
+    else if (searchEng === 'google') {
+        slideBar.style.transform = 'translate(-2px, 11px)';
+        searchEngine = 'google';
+        localStorage.setItem('searchEngine', 'google')
+    }
+}
 
 
 //load saved data
@@ -82,6 +180,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const storedInput = localStorage.getItem('inputValues');
     const storedNotes = localStorage.getItem('noteValues');
     const dark = localStorage.getItem('darkModeOn');
+    let searchEngine = localStorage.getItem('searchEngine');
+    let quotations = localStorage.getItem('exactMatch');
+    console.log(`search engine: ${searchEngine}`);
 
     if (storedInput) {
 
@@ -103,6 +204,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     if (dark) {
         toggleDarkMode();
+    }
+
+    if(searchEngine) {
+        toggleSearchEngine (searchEngine);
+    }
+
+
+    if(quotations === 'true') {
+        exactMatch.checked = true;
+    } else if (quotations === 'false') {
+        exactMatch.checked = false;
     }
 })
 
@@ -147,13 +259,12 @@ clipboards.forEach(clipboard => {
         } else if (inputTarget.id === 'name-change') {
             inputTarget.value = '("previous name" OR "former name" OR former* OR "new name" OR "name change" OR "aka" OR "dba" OR "doing business as" OR "also known as" OR "fka" OR "formerly known as")';
         } else if (inputTarget.id ==='subsidiary') {
-            inputTarget.value = '(subsidiary OR member OR affiliate)';
+            inputTarget.value = 'subsidiaries';
         } else if (inputTarget.id === 'acquire') {
             inputTarget.value = '(acquired OR merger OR "joint-venture" OR JV OR integrate)';
         } else if (inputTarget.id === 'divest') {
             inputTarget.value = '(divest OR sold OR spin-off)';
         }
-        
         else {
             return;
         }
@@ -203,7 +314,32 @@ deleteButtons.forEach(button=>{
             targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
 
             setTimeout(()=>{
-                targetBtn.innerHTML = `<i class="fa-solid fa-trash-can">`;
+                targetBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>
+                <span class="button-label">Delete</span>`;
+            }, 500);
+        }
+
+        saveNoteValues();
+
+       
+    })
+})
+
+inputDelete.forEach((button) => {
+    button.addEventListener('click', (e)=>{
+        e.preventDefault();
+
+        const targetBtn = e.currentTarget;
+        const targetParent = targetBtn.parentElement.parentElement;
+        const targetInput = targetParent.querySelector(".input-style");
+        
+        if(targetInput) {
+
+            targetInput.value = ''; 
+            targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+
+            setTimeout(()=>{
+                targetBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
             }, 500);
         }
 
@@ -229,7 +365,31 @@ copyButtons.forEach( (button) => {
             targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
 
             setTimeout(()=>{
-                targetBtn.innerHTML = `<i class="fa-solid fa-copy">`;
+                targetBtn.innerHTML = `<i class="fa-solid fa-copy"></i>
+                <span class="button-label">Copy</span>`;
+            }, 500);
+        }
+        
+    })
+})
+
+
+inputCopy.forEach((button) => {
+    button.addEventListener('click', (e)=>{
+        e.preventDefault();
+
+        const targetBtn = e.currentTarget;
+        const targetParent = targetBtn.parentElement.parentElement;
+        const targetInput = targetParent.querySelector(".input-style");
+        
+
+        if(targetInput) {
+            targetInput.select();
+            navigator.clipboard.writeText(targetInput.value);  
+            targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+
+            setTimeout(()=>{
+                targetBtn.innerHTML = `<i class="fa-solid fa-copy"></i>`;
             }, 500);
         }
         
@@ -253,7 +413,29 @@ pasteButtons.forEach( (button)=>{
         
         targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
         setTimeout(()=>{
-            targetBtn.innerHTML = `<i class="fa-solid fa-paste">`;
+            targetBtn.innerHTML = `<i class="fa-solid fa-paste"></i>
+            <span class="button-label">Paste</span`;
+        }, 500); 
+        console.log('notesSaved')
+    })
+})
+
+inputPaste.forEach((button) => {
+    button.addEventListener('click', (e)=>{
+        e.preventDefault();
+
+        const targetBtn = e.currentTarget;
+        const targetParent = targetBtn.parentElement.parentElement;
+        const targetInput = targetParent.querySelector(".input-style");
+        
+        navigator.clipboard.readText().then((clipText) => { 
+            targetInput.value = clipText
+            saveNoteValues();       
+        });
+        
+        targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+        setTimeout(()=>{
+            targetBtn.innerHTML = `<i class="fa-solid fa-paste"></i>`;
         }, 500); 
         console.log('notesSaved')
     })
@@ -309,7 +491,7 @@ inputContBtns.forEach( (button) => {
                 searchAll(companyName.value, allSearch);
 
             }
-            else {
+            else if (button.id !== 'clear') {
                 searchCompanyWithOtherQuery(companyName.value, targetInput.value)
             }
         } else if (button.id === 'openfigi') {
@@ -318,7 +500,7 @@ inputContBtns.forEach( (button) => {
             } else {
                 alert('Please input ISIN number');
             }
-        } else if (button.id === "clear") {
+        } else if (button.id === "clear" || button.id === 'copy' || button.id === 'paste' || button.id === 'delete') {
             return;
         } 
         else {
@@ -333,26 +515,43 @@ function searchAll (company, stringArray) {
     if(exactMatch.checked === true && stringArray.length !== 0) {
         
         company = `"${company}"`
+
         stringArray.forEach(string=>{
 
-            if (string !== '') {
-                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + string)}`;
+                if (string !== '') {
+
+                    if (searchEngine ==='google') {
+                        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + string)}`;
+                        window.open(googleSearchUrl, '_blank');
+                    }
+                    else if (searchEngine === 'bing') {
+                        const bingSearchUrl = `https://www.bing.com/search?q=${encodeURIComponent(company + ' + ' + string)}`; 
+                        window.open(bingSearchUrl, '_blank');
+                    }
+                    
+                }
                 
-                window.open(googleSearchUrl, '_blank');
-            }
-            
         })
 
         console.log('success');
         
     } else if(stringArray.length !== 0) {
+
         stringArray.forEach(string=>{
 
             if (string !== '') {
-                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + string)}`;
-                window.open(googleSearchUrl, '_blank');
+
+                if (searchEngine ==='google') {
+                    const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + string)}`;
+                    window.open(googleSearchUrl, '_blank');
+                }
+                else if (searchEngine === 'bing') {
+                    const bingSearchUrl = `https://www.bing.com/search?q=${encodeURIComponent(company + ' + ' + string)}`; 
+                    window.open(bingSearchUrl, '_blank');
+                }
+                
             }
-            
+      
         })
     } else {
         alert ('Please enter necessary information.')
@@ -363,30 +562,62 @@ function searchAll (company, stringArray) {
 function searchCompanyOnly(name) {
     
         if(exactMatch.checked === true) {
-            const googleSearchUrl = `https://www.google.com/search?q="${encodeURIComponent(name)}"`;    
-            window.open(googleSearchUrl, '_blank');
+
+            if (searchEngine ==='google') {
+                const googleSearchUrl = `https://www.google.com/search?q="${encodeURIComponent(name)}"`;    
+                window.open(googleSearchUrl, '_blank');
+            }
+            else if (searchEngine === 'bing') {
+                const bingSearchUrl = `https://www.bing.com/search?q="${encodeURIComponent(name)}"`; 
+                window.open(bingSearchUrl, '_blank');
+            }
+
         } else {
-            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(name)}`;    
-            window.open(googleSearchUrl, '_blank');
+
+            if (searchEngine ==='google') {
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(name)}`;   
+                window.open(googleSearchUrl, '_blank');
+            }
+            else if (searchEngine === 'bing') {
+                const bingSearchUrl = `https://www.bing.com/search?q=${encodeURIComponent(name)}`;    
+                window.open(bingSearchUrl, '_blank');
+            }
         }
 
     }
 
 
 function searchFinanceInfo(isin) {
-    const openfigisearchURL = `https://www.openfigi.com/search#!?simpleSearchString=${isin}`
-    window.open(openfigisearchURL, '_blank');
+        const openfigisearchURL = `https://www.openfigi.com/search#!?simpleSearchString=${isin}`
+        window.open(openfigisearchURL, '_blank');
 }
 
 function searchCompanyWithOtherQuery(company, query) {
     
     if(exactMatch.checked === true && query !== '') {
+
         company = `"${company}"`
-        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;
-        window.open(googleSearchUrl, '_blank');
-    } else if(query !== '') {
-        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;    
-        window.open(googleSearchUrl, '_blank');
+
+        if (searchEngine ==='google') {
+            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;
+            window.open(googleSearchUrl, '_blank');
+        }
+        else if (searchEngine === 'bing') {
+            const bingSearchUrl = `https://www.bing.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;    
+            window.open(bingSearchUrl, '_blank');
+        }
+
+        
+    } else if(exactMatch.checked === false && query !== '') {
+
+        if (searchEngine ==='google') {
+            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;
+            window.open(googleSearchUrl, '_blank');
+        }
+        else if (searchEngine === 'bing') {
+            const bingSearchUrl = `https://www.bing.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;    
+            window.open(bingSearchUrl, '_blank');
+        }
     } else {
         alert ('Please enter necessary information.')
     }
@@ -397,11 +628,25 @@ function searchRelationship(company, query) {
     if(exactMatch.checked === true && query !== '') {
         company = `"${company}"`
         query = `"${query}"`
-        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;
-        window.open(googleSearchUrl, '_blank');
+
+        if (searchEngine ==='google') {
+            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;
+            window.open(googleSearchUrl, '_blank');
+        }
+        else if (searchEngine === 'bing') {
+            const bingSearchUrl = `https://www.bing.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;    
+            window.open(bingSearchUrl, '_blank');
+        }
     } else if(query !== '') {
-        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;    
-        window.open(googleSearchUrl, '_blank');
+
+        if (searchEngine ==='google') {
+            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;
+            window.open(googleSearchUrl, '_blank');
+        }
+        else if (searchEngine === 'bing') {
+            const bingSearchUrl = `https://www.bing.com/search?q=${encodeURIComponent(company + ' + ' + query)}`;    
+            window.open(bingSearchUrl, '_blank');
+        }
     } else {
         alert ('Please enter necessary information.')
     }
