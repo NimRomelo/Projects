@@ -85,7 +85,7 @@ body.dark-mode {
 .quick-links-cont {
     color: var(--cream);
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr;
     gap: 10px;
     width: 100%;
@@ -414,6 +414,22 @@ body.dark-mode {
     grid-template-rows: repeat(13, auto);
     gap: 5px;
     padding-top: 10px;
+}
+
+#add-notes {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 0px;
+}
+
+#add-notes:hover {
+    background-color: rgb(214, 214, 214);
+}
+
+#add-notes .fa-plus{
+    color: var(--orange)
 }
 
 

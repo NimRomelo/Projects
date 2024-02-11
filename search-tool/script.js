@@ -20,6 +20,8 @@ const clearNotesBtn = document.querySelector("#clear-notes");
 const clipboards = document.querySelectorAll(".fa-clipboard");
 const darkModeBtn = document.querySelector(".dark-mode-btn");
 
+const addbtn = document.querySelector('#add-notes');
+
 const body = document.querySelector('body');
 
 const allIcons = body.querySelectorAll('i');
@@ -44,6 +46,35 @@ exactMatch.addEventListener('change', (e)=>{
 
     localStorage.setItem('exactMatch', quotationsChecked);
 })
+
+
+// addbtn.addEventListener('click', ()=>{
+//     const newNotes = `
+//     <textarea class="links" placeholder="Paste notes/links here"></textarea>
+//     <button class="textarea-links-btn copy">
+//         <i class="fa-solid fa-copy"></i>
+//         <span class="button-label">Copy</span>
+//     </button>
+//     <button class="textarea-links-btn paste">
+//         <i class="fa-solid fa-paste"></i>
+//         <span class="button-label">Paste</span>
+//     </button>
+//     <button class="textarea-links-btn delete">
+//         <i class="fa-solid fa-trash-can"></i>
+//         <span class="button-label">Delete</span>
+//     </button>`
+
+
+//     const newDiv = document.createElement('div');
+
+//     notesButtons.appendChild(newDiv);
+
+//     newDiv.classList.add('links-container');
+
+//     newDiv.innerHTML = newNotes;
+
+
+// })
 
 
 
