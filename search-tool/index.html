@@ -99,13 +99,13 @@
                     </div>
                     <div class="search-engine-cont">
                         <div class="selection-bar"></div>
-                        <label for="google-search" class="google-icon">
+                        <label for="google-search" class="google-icon" title="Search using Google">
                             <svg class="google-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.38576 10.068C6.17301 10.6899 6.06488 11.3427 6.06576 12C6.06576 12.734 6.19776 13.437 6.44176 14.086C6.74587 14.8972 7.22356 15.6321 7.8414 16.2393C8.45924 16.8466 9.20231 17.3115 10.0186 17.6015C10.8349 17.8916 11.7047 17.9998 12.5672 17.9185C13.4297 17.8372 14.264 17.5684 15.0118 17.131H15.0128C16.1908 16.4404 17.0959 15.3661 17.5768 14.088H12.2298V10.132H21.8348C22.0832 11.4405 22.0682 12.7854 21.7908 14.088C21.31 16.3399 20.0666 18.3568 18.2708 19.798C16.497 21.2264 14.2872 22.0035 12.0098 22C10.2927 22.001 8.60439 21.5597 7.1074 20.7187C5.61041 19.8778 4.35522 18.6655 3.46277 17.1986C2.57033 15.7317 2.0707 14.0597 2.01202 12.3437C1.95334 10.6276 2.3376 8.92542 3.12776 7.401C3.97073 5.77291 5.24515 4.40796 6.81164 3.4554C8.37813 2.50284 10.1764 1.99936 12.0098 2C14.4358 2 16.6608 2.864 18.3928 4.302L15.1528 6.954C14.3938 6.48164 13.5381 6.18643 12.6493 6.09034C11.7605 5.99424 10.8615 6.09972 10.0191 6.39894C9.17666 6.69816 8.41254 7.18342 7.78351 7.81864C7.15447 8.45386 6.67672 9.2227 6.38576 10.068Z" fill="#21272A"/>
                             </svg> 
                         </label>
                         <input type="checkbox" class="search-engine" id="google-search">
-                        <label for="google-search" class="bing-icon">
+                        <label for="google-search" class="bing-icon" title="Search using Microsoft Bing">
                             <svg class="bing-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.9828 10.57C19.9789 10.4744 19.9466 10.3821 19.8902 10.3048C19.8338 10.2276 19.7557 10.1688 19.6658 10.136L10.2828 7.23C10.1078 7.176 10.0278 7.269 10.1048 7.436L11.8498 11.269C11.9268 11.437 12.1258 11.636 12.2918 11.712L14.6858 12.808C14.8518 12.884 14.8558 13.017 14.6938 13.103L4.47977 18.535C4.31877 18.621 4.29777 18.591 4.43377 18.468L8.35777 14.934C8.50591 14.7846 8.59414 14.5861 8.60577 14.376L8.60977 3.664C8.60584 3.56814 8.57352 3.47561 8.5169 3.39816C8.46028 3.32071 8.38192 3.26183 8.29177 3.229L4.36477 2.014C4.18977 1.96 4.04677 2.067 4.04677 2.252V18.502C4.04677 18.687 4.16877 18.925 4.31877 19.031L8.30877 21.858C8.45877 21.964 8.70877 21.973 8.86577 21.878L19.6978 15.355C19.7811 15.2981 19.8503 15.2228 19.8999 15.1348C19.9495 15.0469 19.9782 14.9488 19.9838 14.848V10.57H19.9828Z" fill="#21272A"/>
                             </svg>    
@@ -131,7 +131,7 @@
                     </div>
                     <div class="company-cont">
                         <button id="company-name-btn">Search Company</button>
-                        <button id="headquarters">HQ</button>
+                        <button id="headquarters" title="Headquarters">HQ</button>
                     </div>
                     
                 </div>
@@ -181,7 +181,7 @@
                         </button>
                     </div>
                     <div class="finance-button-cont">
-                        <button id="stock"><i class="fa-solid fa-building-columns"></i></button>
+                        <button id="stock" title="Search if stock listed"><i class="fa-solid fa-building-columns"></i></button>
                         <button id="isin">ISIN</button>
                         <button id="openfigi">OpenFigi</button>
                     </div>
@@ -217,30 +217,30 @@
                 <div class="ultimate-owner row-container2">
                     <input class="input-style" type="text" id="owner" value='("parent company" OR owner OR shareholder OR control OR majority)' required>
                     
-                    <i class="fa-solid fa-clipboard"></i>
+                    <i class="fa-solid fa-clipboard" title="Restore default"></i>
                     <button id="ultimate-owner">Search for Ultimate Owner</button>
                     
                 </div>
                 <div class="name-change row-container2">
                     <input class="input-style" type="text" id="name-change" value='("previous name" OR "former name" OR former* OR "new name" OR "name change" OR "aka" OR "dba" OR "doing business as" OR "also known as" OR "fka" OR "formerly known as")
                     ' required>
-                    <i class="fa-solid fa-clipboard"></i>
+                    <i class="fa-solid fa-clipboard" title="Restore default"></i>
                     <button id="name-change">Search for Name Changes</button>
                     
                 </div>
                 <div class="subsidiaries row-container2">
                     <input class="input-style" type="text" id="subsidiary" value='subsidiaries' required>
-                    <i class="fa-solid fa-clipboard"></i>
+                    <i class="fa-solid fa-clipboard" title="Restore default"></i>
                     <button id="subsidiaries">Search for Subsidiaries</button>
                 </div>
                 <div class="acquisitions row-container2">
                     <input class="input-style" type="text" id="acquire" value='(acquired OR merger OR "joint-venture" OR JV OR integrate)' required>
-                    <i class="fa-solid fa-clipboard"></i>
+                    <i class="fa-solid fa-clipboard" title="Restore default"></i>
                     <button id="acquisitions">Search for Acquistions</button>
                 </div>
                 <div class="divestments row-container2">
                     <input class="input-style" type="text" id="divest" value='(divest OR sold OR spin-off)' required>
-                    <i class="fa-solid fa-clipboard"></i>
+                    <i class="fa-solid fa-clipboard" title="Restore default"></i>
                     <button id="acquisitions">Search for Divestments</button>
                 </div>
 

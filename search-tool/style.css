@@ -178,10 +178,10 @@ body.dark-mode {
     border-radius: 5px;
 }
 
-.bing-icon:hover, .google-icon:hover {
+/* .bing-icon:hover, .google-icon:hover {
     background-color: var(--orange);
 
-}
+} */
 
 .bing-svg path{
     fill: var(--grey);  
