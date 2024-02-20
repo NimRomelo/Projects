@@ -48,36 +48,6 @@ exactMatch.addEventListener('change', (e)=>{
 })
 
 
-// addbtn.addEventListener('click', ()=>{
-//     const newNotes = `
-//     <textarea class="links" placeholder="Paste notes/links here"></textarea>
-//     <button class="textarea-links-btn copy">
-//         <i class="fa-solid fa-copy"></i>
-//         <span class="button-label">Copy</span>
-//     </button>
-//     <button class="textarea-links-btn paste">
-//         <i class="fa-solid fa-paste"></i>
-//         <span class="button-label">Paste</span>
-//     </button>
-//     <button class="textarea-links-btn delete">
-//         <i class="fa-solid fa-trash-can"></i>
-//         <span class="button-label">Delete</span>
-//     </button>`
-
-
-//     const newDiv = document.createElement('div');
-
-//     notesButtons.appendChild(newDiv);
-
-//     newDiv.classList.add('links-container');
-
-//     newDiv.innerHTML = newNotes;
-
-
-// })
-
-
-
 function toggleDarkMode() {
 
     const label = document.querySelector('.check-cont');
@@ -347,7 +317,7 @@ inputDelete.forEach((button) => {
             }, 500);
         }
 
-        saveNoteValues();
+        saveInputValues();
 
        
     })
@@ -435,7 +405,7 @@ inputPaste.forEach((button) => {
         
         navigator.clipboard.readText().then((clipText) => { 
             targetInput.value = clipText
-            saveNoteValues();       
+            saveInputValues();       
         });
         
         targetBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
